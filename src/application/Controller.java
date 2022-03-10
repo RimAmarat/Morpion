@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.ProgressBar;
+
 
 public class Controller {
 	
@@ -57,6 +59,7 @@ public class Controller {
 		             return iterations;
 		         }
 		     };
+		    ProgressBar progressBar = new ProgressBar(0.6);
 		    
 			Parent root = FXMLLoader.load(getClass().getResource("/LoadAI.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
