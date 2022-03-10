@@ -10,7 +10,7 @@
       <AnchorPane prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: #f0f8ff;">
          <children>
             <ButtonBar layoutX="312.0" layoutY="183.0" prefHeight="40.0" prefWidth="200.0" />
-          <Button layoutX="248.0" layoutY="75.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="48.0" prefWidth="129.0" text="Start" />
+          <Button layoutX="248.0" layoutY="75.0" mnemonicParsing="false" onAction="#switchToChooseOpp" prefHeight="48.0" prefWidth="129.0" text="Start" />
             <ButtonBar layoutX="330.0" layoutY="342.0" prefHeight="26.0" prefWidth="30.0" />
             <ButtonBar layoutX="265.0" layoutY="277.0" prefHeight="0.0" prefWidth="62.0" />
           <Button layoutX="248.0" layoutY="266.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="129.0" text="Reset" />

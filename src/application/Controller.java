@@ -1,5 +1,6 @@
 package application;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,9 +14,9 @@ public class Controller {
 	private Scene scene;
 	private Parent root;
 	
-	public void switchToGame(ActionEvent event) {
+	public void switchToChooseOpp(ActionEvent event) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/Game.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/ChooseOpponent.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -38,6 +39,33 @@ public class Controller {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public void switchToLoadAI(ActionEvent event) {
+		try {
+			Task<Integer> task = new Task<Integer>() {
+				@Override protected Integer call() throws Exception {
+		             int iterations;
+		             for (iterations = 0; iterations < 10000000; iterations++) {
+		                 if (isCancelled()) {
+		                     updateMessage("Cancelled");
+		                     break;
+		                 }
+		                 updateMessage("Iteration " + iterations);
+		                 updateProgress(iterations, 10000000);
+		             }
+		             return iterations;
+		         }
+		     };
+		    
+			Parent root = FXMLLoader.load(getClass().getResource("/LoadAI.fxml"));
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
