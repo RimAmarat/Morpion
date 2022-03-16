@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerAITraining">
+   <children>
+      <Button fx:id="buttonLoadAI" layoutX="171.0" layoutY="211.0" mnemonicParsing="false" onAction="#loadAI" text="Load AI" />
+      <ProgressBar fx:id="progressBarAI" layoutX="103.0" layoutY="177.0" prefWidth="200.0" progress="0.0" />
+   </children>
+</AnchorPane>
