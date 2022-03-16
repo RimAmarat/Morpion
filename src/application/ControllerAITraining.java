@@ -12,6 +12,8 @@ import java.lang.Thread;
 
 // crate
 import ai.AITrainingTask;
+import ai.MultiLayerPerceptron;
+import ai.SigmoidalTransferFunction;
 
 
 public class ControllerAITraining {
