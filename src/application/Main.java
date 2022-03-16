@@ -1,6 +1,7 @@
   package application;
 	
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ import javafx.scene.paint.Color;
 
 
 public class Main extends Application {
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
