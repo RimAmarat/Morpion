@@ -31,13 +31,13 @@ public class AITrainingTask extends Task<Integer> {
 		layers[layers.length-1] = size ;
 		
 		double error = 0.0;
-		double epochs = 1000000000 ;
+		double epochs = 100000 ;
 
 		System.out.println("---");
 		System.out.println("Load data ...");
-		HashMap<Integer, Coup> mapTrain = Test.loadCoupsFromFile("src/ai/ressource/train.txt");
-		HashMap<Integer, Coup> mapDev = Test.loadCoupsFromFile("src/ai/ressource/dev.txt");
-		HashMap<Integer, Coup> mapTest = Test.loadCoupsFromFile("src/ai/ressource/test.txt");
+		HashMap<Integer, Coup> mapTrain = Test.loadCoupsFromFile("src/ai/resources/train.txt");
+		HashMap<Integer, Coup> mapDev = Test.loadCoupsFromFile("src/ai/resources/dev.txt");
+		HashMap<Integer, Coup> mapTest = Test.loadCoupsFromFile("src/ai/resources/test.txt");
 		MultiLayerPerceptron net = new MultiLayerPerceptron(layers, lr, new SigmoidalTransferFunction());
 		System.out.println("---");
 		//TRAINING ...
@@ -49,7 +49,13 @@ public class AITrainingTask extends Task<Integer> {
 
 			error += net.backPropagate(c.in, c.out);
 
-			if ( i % 10000 == 0 ) System.out.println("Error at step "+i+" is "+ (error/(double)i));
+			if ( i % 1 == 0 ) {
+				
+				System.out.println("Error at step "+i+" is "+ (error/(double)i));
+				
+				this.updateProgress(i, epochs);
+				
+			}
 		}
 		
 		return progressStatus;
