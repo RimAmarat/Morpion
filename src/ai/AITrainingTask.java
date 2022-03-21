@@ -1,5 +1,7 @@
 package ai;
 
+import java.util.HashMap;
+
 //lib
 import javafx.concurrent.Task;
 
@@ -14,39 +16,41 @@ public class AITrainingTask extends Task<Integer> {
 		
 		int progressStatus = 0;
 		
-		System.out.println();
-		System.out.println("START TRAINING ...");
-		System.out.println();
-		int[] layers = new int[]{ 2, 5, 1 };
-
-		double error = 0.0 ;
-		MultiLayerPerceptron net = new MultiLayerPerceptron(layers, 0.1, new SigmoidalTransferFunction());
-		double samples = 1000000000 ;
-
-		//TRAINING ...
-		for(int i = 0; i < samples; i++){
-			double[] inputs = new double[]{Math.round(Math.random()), Math.round(Math.random())};
-			double[] output = new double[1];
-
-			if((inputs[0] == 1.0) || (inputs[1] == 1.0))
-				output[0] = 1.0;
-			else
-				output[0] = 0.0;
-
-			error += net.backPropagate(inputs, output);
-
-			if ( i % 100000 == 0 ) System.out.println("Error at step "+i+" is "+ (error/(double)i));
-			
-			// updates progress bar
-			progressStatus = i;
-			this.updateProgress(progressStatus, samples);
-			
-		}
+		// THESE ARE HARDCODED VALUES, WE NEED TO FETCH
+		// THOSE VALUES FROM A CONFIG FILE
+		int size = 9;
+		int h = 256;  // number of nerons
+		double lr = 0.1;  // easy 0.1, hard 0.01 -> from a config file
+		int l = 2;  // easy 2, hard 3
 		
-		error /= samples ;
-		System.out.println("Error is "+error);
-		//
-		System.out.println("Learning completed!");
+		int[] layers = new int[l+2];
+		layers[0] = size ;
+		for (int i = 0; i < l; i++) {
+			layers[i+1] = h ;
+		}
+		layers[layers.length-1] = size ;
+		
+		double error = 0.0;
+		double epochs = 1000000000 ;
+
+		System.out.println("---");
+		System.out.println("Load data ...");
+		HashMap<Integer, Coup> mapTrain = Test.loadCoupsFromFile("src/ai/ressource/train.txt");
+		HashMap<Integer, Coup> mapDev = Test.loadCoupsFromFile("src/ai/ressource/dev.txt");
+		HashMap<Integer, Coup> mapTest = Test.loadCoupsFromFile("src/ai/ressource/test.txt");
+		MultiLayerPerceptron net = new MultiLayerPerceptron(layers, lr, new SigmoidalTransferFunction());
+		System.out.println("---");
+		//TRAINING ...
+		for(int i = 0; i < epochs; i++){
+
+			Coup c = null ;
+			while ( c == null )
+				c = mapTrain.get((int)(Math.round(Math.random() * mapTrain.size())));
+
+			error += net.backPropagate(c.in, c.out);
+
+			if ( i % 10000 == 0 ) System.out.println("Error at step "+i+" is "+ (error/(double)i));
+		}
 		
 		return progressStatus;
 		
