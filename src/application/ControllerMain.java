@@ -2,11 +2,10 @@ package application;
 
 //lib
 import javafx.application.Application;
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
@@ -16,8 +15,9 @@ import javafx.fxml.FXMLLoader;
 
 
 public class ControllerMain extends Application {
+	private Parent root;
 	
-	static private Stage primaryStage;
+	private Stage primaryStage;
 	
 	@FXML
 	private Button buttonLoadAITrainingView;
@@ -30,7 +30,7 @@ public class ControllerMain extends Application {
 	@Override
 	public void start(Stage stage) {
 		
-		ControllerMain.primaryStage = stage;
+		primaryStage = stage;
 		
 		try {
 			
@@ -38,12 +38,16 @@ public class ControllerMain extends Application {
 			int height = 400;
 			
 			// create scene
-			Parent root = FXMLLoader.load(getClass().getResource("ViewMain.fxml"));
+			root = FXMLLoader.load(getClass().getResource("ViewMain.fxml"));
 			Scene scene = new Scene(root, width, height);
-			
+			// css is unnecessary at the moment
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setTitle("Tic Tac Toe"); // Title
+			Image icon = new Image("blue_circle.png"); // Icon
+			primaryStage.getIcons().add(icon);
 			// display scene
-			ControllerMain.primaryStage.setScene(scene);
-			ControllerMain.primaryStage.show();
+			primaryStage.setScene(scene);
+			primaryStage.show();
 		
 		} catch(Exception exception) {
 			
@@ -60,26 +64,20 @@ public class ControllerMain extends Application {
 	 * @param width - the width of the window
 	 * @param height - the height of the window
 	 */
-	public void loadAITrainingView(ActionEvent event) {
+	public void switchToChooseOpp(ActionEvent event) {
 		
 		int width = 400;
 		int height = 400;
 		
 		try {
-			
-			// loads next pane
-			Parent next = FXMLLoader.load(getClass().getResource("ViewAITraining.fxml"));
-			Scene nextScene = new Scene(next, width, height);
-			
-			// display the scene
-			ControllerMain.primaryStage.setScene(nextScene);
-		
-		} catch(Exception exception) {
-		
-			exception.printStackTrace();
-			
+			root = FXMLLoader.load(getClass().getResource("/ChooseOpponent.fxml"));
+			Scene scene = new Scene(root, width, height);
+			primaryStage.setScene(scene);
+			primaryStage.show();
 		}
-		
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

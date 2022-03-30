@@ -4,28 +4,23 @@ import java.util.HashMap;
 
 import javafx.concurrent.Task;
 
-public class TaskAI extends Task<Double> {
+public class AITrainingTask extends Task<Double> {
 	
 	@Override
 	protected Double call() throws Exception {
 		// Initialisation de coups
 		HashMap<Integer, Coup> coups = Test.loadGames("./resources/dataset/Tic_tac_initial_results.csv");
 		Test.saveGames(coups, "./resources/train_dev_test/", 0.7);
-		//
+
 		// LOAD CONFIG ...
-		//
 		ConfigFileLoader cfl = new ConfigFileLoader();
 		cfl.loadConfigFile("./resources/config.txt");
 		Config config = cfl.get("F");
 		System.out.println("Test.main() : "+config);
-		//
+		
 		//TRAIN THE MODEL ...
-		//
-		double epochs = 100000 ;
-		//
-		//PLAY ...
-		//
 
+		//PLAY ...
 		System.out.println("---");
 		System.out.println("Load data ...");
 		HashMap<Integer, Coup> mapTrain = Test.loadCoupsFromFile("./resources/train_dev_test/train.txt");
@@ -34,22 +29,19 @@ public class TaskAI extends Task<Double> {
 		Coup c = mapTrain.get((int)(Math.round(Math.random() * mapDev.size())));
 		
 		// ************************************************************************************************
-		System.out.println();
-		System.out.println("START TRAINING ...");
-		System.out.println();
-		//
+		System.out.println("\n START TRAINING ... ");
 		int size = 9;
 		int h = config.hiddenLayerSize;
 		double lr = config.learningRate;
 		int l = config.numberOfhiddenLayers;
-		//			int[] layers = new int[]{ size, 128, 128, size };
 		int[] layers = new int[l+2];
 		layers[0] = size ;
-		for (int i = 0; i < l; i++) {
+		for (int i = 0; i < l; i++)
 			layers[i+1] = h ;
-		}
+		
 		layers[layers.length-1] = size ;
 		//
+		double epochs = 100000 ;
 		double error = 0.0 ;
 		MultiLayerPerceptron net = new MultiLayerPerceptron(layers, lr, new SigmoidalTransferFunction());
 		//TRAINING ...

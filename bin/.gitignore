@@ -1,8 +1,2 @@
-/ChooseOpponent.fxml
-/LoadAI.fxml
-/Main.fxml
-/ai/
 /application/
-/blue_circle.png
-/AIGameView.fxml
-/HumanGameView.fxml
+/ViewMain.fxml

@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
 import javafx.beans.Observable;
@@ -20,7 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 
-import ai.TaskAI;
+import ai.AITrainingTask;
 
 
 public class Controller implements Initializable {
@@ -72,7 +73,7 @@ public class Controller implements Initializable {
 	
 	public void switchToMain(ActionEvent event) {
 		try {
-			root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/ViewMain.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -96,6 +97,7 @@ public class Controller implements Initializable {
 			stage.setScene(scene);
 
 			stage.show();
+
 			System.out.println("Switch to load AI called");
 			
 			progressLabel = (Label) stage.getScene().lookup("#progressLabel");
