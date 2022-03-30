@@ -104,8 +104,8 @@ public class Controller implements Initializable {
 			btnEasy = (Button) stage.getScene().lookup("#btnEasy");
 			btnHard = (Button) stage.getScene().lookup("#btnHard");
 			btnStart = (Button) stage.getScene().lookup("#btnStart");
-			btnEasy.setOnAction(EventHandler<ActionEvent> e -> difficulty = 0);
-			btnHard.setOnAction(event -> difficulty = 1);
+			btnEasy.setOnAction(e -> difficulty = 0);
+			btnHard.setOnAction(e -> difficulty = 1);
 			
 /*
 			TaskAI task = new TaskAI();
