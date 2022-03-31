@@ -2,6 +2,7 @@ package application;
 
 //lib
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,11 +17,10 @@ import javafx.fxml.FXMLLoader;
 
 public class ControllerMain extends Application {
 	private Parent root;
-	
 	private Stage primaryStage;
-	
+	private Scene scene;
 	@FXML
-	private Button buttonLoadAITrainingView;
+	private Button btnStart;
 	
 	
 	public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class ControllerMain extends Application {
 	@Override
 	public void start(Stage stage) {
 		
-		primaryStage = stage;
+		this.primaryStage = stage;
 		
 		try {
 			
@@ -39,7 +39,7 @@ public class ControllerMain extends Application {
 			
 			// create scene
 			root = FXMLLoader.load(getClass().getResource("ViewMain.fxml"));
-			Scene scene = new Scene(root, width, height);
+			scene = new Scene(root, width, height);
 			// css is unnecessary at the moment
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Tic Tac Toe"); // Title
@@ -64,6 +64,7 @@ public class ControllerMain extends Application {
 	 * @param width - the width of the window
 	 * @param height - the height of the window
 	 */
+	@FXML
 	public void switchToChooseOpp(ActionEvent event) {
 		
 		int width = 400;
@@ -71,7 +72,9 @@ public class ControllerMain extends Application {
 		
 		try {
 			root = FXMLLoader.load(getClass().getResource("/ChooseOpponent.fxml"));
-			Scene scene = new Scene(root, width, height);
+			primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		}

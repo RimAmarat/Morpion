@@ -55,14 +55,14 @@ public class AITrainingTask extends Task<Double> {
 
 			if ( i % 10000 == 0 ) 
 			{
-				updateMessage("Error at step "+i+" is "+ (error/(double)i));
+				updateMessage("Error at step "+i+" is "+ Math.round((error/(double)i)*10000)*0.01+" %");
 				updateProgress(i,epochs);
 				System.out.println("Error at step "+i+" is "+ (error/(double)i));
 			}
 				
 		}
 
-		updateMessage("Error at step "+10000+" is "+ (error/(double)1000000));
+		updateMessage("Error at step "+10000+" is "+ Math.round((error/epochs)*10000)*0.01+" % \n Learning completed!");
 
 		updateProgress(100000,epochs);
 
