@@ -117,7 +117,7 @@ public class ControllerAITraining {
 		try {
 			root = FXMLLoader.load(getClass().getResource("/AIGameView.fxml"));
 		    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
+			scene = new Scene(root,600,550);
 			stage.setScene(scene);
 
 			stage.show();

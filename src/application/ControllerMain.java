@@ -34,8 +34,8 @@ public class ControllerMain extends Application {
 		
 		try {
 			
-			int width = 400;
-			int height = 400;
+			int width = 600;
+			int height = 550;
 			
 			// create scene
 			root = FXMLLoader.load(getClass().getResource("ViewMain.fxml"));
