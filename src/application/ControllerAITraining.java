@@ -57,14 +57,24 @@ public class ControllerAITraining {
 	
 	private int difficulty; // 0 for easy, 1 for hard
 
-	@FXML
-	public void chooseDifficulty(ActionEvent event) {
-		btnEasy.setOnAction(e -> difficulty = 0);
-		btnHard.setOnAction(e -> difficulty = 1);
+	public void displayStartButton() {
 		btnStart.setVisible(true);
 		btnEasy.setVisible(false);
 		btnHard.setVisible(false);
-		System.out.println("Difficulty level chosen "+difficulty);
+	}
+	
+	public void setDifficultyToHard() { 
+		
+		difficulty = 1;
+		displayStartButton();
+		
+	}
+	
+	public void setDifficultyToEasy() { 
+		
+		difficulty = 0;
+		displayStartButton();
+		
 	}
 		
 	/**
@@ -87,6 +97,11 @@ public class ControllerAITraining {
 
 		// setup training
 		AITrainingTask trainingTask = new AITrainingTask();
+		
+		// set difficulty
+		// 0 for easy
+		// 1 for hard
+		AITrainingTask.difficulty = difficulty;
 		
 		progressLabel.textProperty().bind(trainingTask.messageProperty());
 		trainingTask.progressProperty()
@@ -121,6 +136,8 @@ public class ControllerAITraining {
 			stage.setScene(scene);
 
 			stage.show();
+			
+			
 			
 		}
 		catch(Exception e) {

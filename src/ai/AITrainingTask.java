@@ -6,6 +6,8 @@ import javafx.concurrent.Task;
 
 public class AITrainingTask extends Task<Double> {
 	
+	public static int difficulty = 0;
+	
 	@Override
 	protected Double call() throws Exception {
 		// Initialisation de coups
@@ -15,7 +17,27 @@ public class AITrainingTask extends Task<Double> {
 		// LOAD CONFIG ...
 		ConfigFileLoader cfl = new ConfigFileLoader();
 		cfl.loadConfigFile("./resources/config.txt");
+		
+		// get difficulty
 		Config config = cfl.get("F");
+		
+		switch (difficulty) {
+		
+			case 0:
+				config = cfl.get("F");
+				System.out.println("Loading easy mode");
+				break;
+				
+			case 1:
+				config = cfl.get("D");
+				System.out.println("Loading hard mode");
+				break;
+				
+			default:
+				break;
+		
+		}
+		
 		System.out.println("Test.main() : "+config);
 		
 		//TRAIN THE MODEL ...
@@ -53,7 +75,7 @@ public class AITrainingTask extends Task<Double> {
 
 			error += net.backPropagate(c.in, c.out);
 
-			if ( i % 10000 == 0 ) 
+			if ( i % 5 == 0 ) 
 			{
 				updateMessage("Error at step "+i+" is "+ Math.round((error/(double)i)*10000)*0.01+" %");
 				updateProgress(i,epochs);
