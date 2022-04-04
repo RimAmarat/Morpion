@@ -26,7 +26,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btnPlay" layoutX="237.0" layoutY="377.0" mnemonicParsing="false" onAction="#goToGame" prefHeight="77.0" prefWidth="126.0" text="Jouer" visible="false" >
+      <Button fx:id="btnPlay" layoutX="237.0" layoutY="377.0" mnemonicParsing="false" onAction="#goToAIGame" prefHeight="77.0" prefWidth="126.0" text="Jouer" visible="false" >
          <font>
             <Font size="31.0" />
          </font>
