@@ -14,11 +14,6 @@ public class ControllerAIGame {
 	
 	@FXML
 	private Label currentPlayer;
-	
-	public void startGame() {
-		
-		
-		
-	}
+
 
 }

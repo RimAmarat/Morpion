@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import util.Utils;
+
 
 public class ControllerMain extends Application {
 	private Parent root;
@@ -32,6 +34,9 @@ public class ControllerMain extends Application {
 		
 		this.primaryStage = stage;
 		
+		Utils utils = new Utils();
+		utils.setPrimaryStage(stage);
+		
 		try {
 			
 			// create scene
@@ -46,6 +51,7 @@ public class ControllerMain extends Application {
 			// display scene
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
 		
 		} catch(Exception exception) {
 			
@@ -59,23 +65,25 @@ public class ControllerMain extends Application {
 	 * Loads the AI Training view
 	 * 
 	 * @param event - the triggered event
-	 * @param width - the width of the window
-	 * @param height - the height of the window
 	 */
 	@FXML
 	public void switchToChooseOpp(ActionEvent event) {
 		
-		try {
-			root = FXMLLoader.load(getClass().getResource("/ChooseOpponent.fxml"));
-			primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+		Utils utils = new Utils();
+		utils.switchView("../ChooseOpponent.fxml");
+		
+	}
+	
+	/**
+	 * Loads the Game Test view
+	 * 
+	 * @param event - the triggered event
+	 */
+	@FXML
+	public void switchToGameTestView(ActionEvent event) {
+		
+		
+		
 	}
 	
 }
