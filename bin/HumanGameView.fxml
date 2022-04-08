@@ -22,7 +22,8 @@
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btnGame" layoutX="302.0" layoutY="479.0" mnemonicParsing="false" text="GAME" />
+      <Button fx:id="btnGame" layoutX="302.0" layoutY="479.0" mnemonicParsing="false" onAction="#game" text="GAME" />
+      <ImageView fitHeight="100.0" fitWidth="111.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="100.0" fitWidth="111.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="100.0" fitWidth="111.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="100.0" fitWidth="111.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
