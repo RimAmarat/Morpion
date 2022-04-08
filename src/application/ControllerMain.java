@@ -35,7 +35,7 @@ public class ControllerMain extends Application {
 		try {
 			
 			// create scene
-			root = FXMLLoader.load(getClass().getResource("/ViewMain.fxml"));
+			root = FXMLLoader.load(getClass().getResource("../ViewMain.fxml"));
 			scene = new Scene(root);
 			
 			// css is unnecessary at the moment
