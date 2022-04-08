@@ -2,6 +2,7 @@ package application;
 
 // lib
 import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.beans.Observable;
 import javafx.concurrent.WorkerStateEvent;
@@ -23,6 +24,8 @@ import ai.AITrainingTask;
 import ai.MultiLayerPerceptron;
 import ai.SigmoidalTransferFunction;
 import ai.AITrainingTask;
+
+import util.Utils;
 
 
 public class ControllerAITraining {
@@ -129,20 +132,10 @@ public class ControllerAITraining {
 	}
 	
 	public void goToAIGame(ActionEvent event) {
-		try {
-			root = FXMLLoader.load(getClass().getResource("/AIGameView.fxml"));
-		    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-
-			stage.show();
-			
-			
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+		
+		Utils utils = new Utils();
+		utils.switchView("../AIGameView.fxml");
+		
 	}
 
 }
