@@ -38,7 +38,7 @@ public class ControllerChooseOpponent {
 	public void goToHumanGame(ActionEvent event) {
 		
 		Utils utils = new Utils();
-		utils.switchView("../LoadAI.fxml");
+		utils.switchView("../HumanGameView.fxml");
 		
 	}
 	
