@@ -1,45 +1,44 @@
 package application;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
-public class ControllerHumanGame {
+public class ControllerHumanGame implements Initializable {
 	
 	@FXML
 	GridPane gameGrid ;
 	
-	Label[][] labels = new Label[3][3];
+	@FXML
+	Button btn01 ;
 	
-	public boolean game(ActionEvent event) {
-		boolean end = false;
-		while(!end) {
-			for(int i=0; i<3; i++)
-				for(int j=0; j<3; j++)
-				{
-					labels[i][j] = new Label();
-					labels[i][j].setText(""+i+","+j+"");
-					labels[i][j].setOnMouseClicked(new EventHandler<MouseEvent>() {
-					    @Override
-					    public void handle(MouseEvent t) {
-					      System.out.println("click");
-					      System.out.println(this.toString());
-					    }
-					    });
-					gameGrid.add(labels[i][j], i, j);
-				}
-			System.out.println(gameGrid.getChildren().get(0).toString());
-			for(Object o: gameGrid.getChildren().toArray() )
-				System.out.print(" -> "+o.toString());
-			gameGrid.add(new Label("O"), 1, 1);
+	@FXML
+	Button btn02 ;
+	
+	@FXML
+	ImageView imageTest0;
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+	  ObservableList<Node> children = gameGrid.getChildren();
 
-			end = true;
-		}
-		labels[1][1].setText("O");
-		return end;
+	  for (Node node : children) {
+		  node.setOnMouseClicked(e -> {
+			  System.out.println("click on "+gameGrid.getColumnIndex(node)+","+gameGrid.getRowIndex(node));
+		  });
+	  }
 	}
+
 }
