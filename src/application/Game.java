@@ -9,15 +9,21 @@ public class Game {
 
 	private int[][] grid;
 	
-	public void test() {
+	private void displayGrid() {
 		
-		try {
+		for (int i=0; i < 3; i++) {
 			
-			setCellValue(-1, 2, 8);
+			System.out.print("[ ");
+		
+			for (int j=0; j < 3; j++) {
+				
+				System.out.print(grid[i][j] + " ");
+				
+			}
 			
-		} catch (IllegalArgumentException exception) {
+			System.out.print(" ]");
 			
-			System.out.println(exception.getMessage());
+			System.out.print("\n");
 			
 		}
 		
@@ -54,6 +60,8 @@ public class Game {
 			throw new IllegalArgumentException("The value of the cell must be -1 or 1.");
 		
 		grid[x][y] = value;
+		
+		displayGrid();
 		
 		return checkWin();
 		
@@ -156,15 +164,20 @@ public class Game {
 		else if (countO == 3)
 			winner = Optional.of(1);
 		
+		countX = 0;
+		countO = 0;
+		
 		// test diag left to right
 		j = 0;
-		for (int i=0; i > 3; i++) {
+		for (int i=0; i < 3; i++) {
 			
 			if (grid[i][j] == -1)
 				countX++;
 			
 			else if (grid[i][j] == 1)
 				countO++;
+			
+			j++;
 			
 		}
 		
