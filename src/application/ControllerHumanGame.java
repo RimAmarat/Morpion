@@ -20,15 +20,6 @@ public class ControllerHumanGame implements Initializable {
 	@FXML
 	GridPane gameGrid ;
 	
-	@FXML
-	Button btn01 ;
-	
-	@FXML
-	Button btn02 ;
-	
-	@FXML
-	ImageView imageTest0;
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
