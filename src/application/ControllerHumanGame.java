@@ -28,7 +28,10 @@ public class ControllerHumanGame implements Initializable {
 	  for (Node node : children) {
 		  node.setOnMouseClicked(e -> {
 			  System.out.println("click on "+gameGrid.getColumnIndex(node)+","+gameGrid.getRowIndex(node));
+			  
 		  });
+		  
+		  
 	  }
 	}
 
