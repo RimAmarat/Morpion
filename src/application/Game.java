@@ -107,10 +107,72 @@ public class Game {
 		}
 		
 		// test columns
+		for (int i=0; i < 3; i++) {
+			
+			for (int j=0; j < 3; j++) {
+				
+				if (grid[j][i] == -1)
+					countX++;
+				
+				else if (grid[j][i] == 1)
+					countO++;
+				
+			}
+			
+			if (countX == 3) {
+				
+				winner = Optional.of(-1);
+				break;
+				
+			} else if (countO == 3) {
+				
+				winner = Optional.of(1);
+				break;
+				
+			}
+			
+			countX = 0;
+			countO = 0;
+			
+		}
 		
 		// test diag right to left
+		int j = 0;
+		for (int i=2; i >= 0; i--) {
+			
+			if (grid[j][i] == -1)
+				countX++;
+			
+			else if (grid[j][i] == 1)
+				countO++;
+			
+			j++;
+			
+		}
+		
+		if (countX == 3)
+			winner = Optional.of(-1);
+		
+		else if (countO == 3)
+			winner = Optional.of(1);
 		
 		// test diag left to right
+		j = 0;
+		for (int i=0; i > 3; i++) {
+			
+			if (grid[i][j] == -1)
+				countX++;
+			
+			else if (grid[i][j] == 1)
+				countO++;
+			
+		}
+		
+		if (countX == 3)
+			winner = Optional.of(-1);
+		
+		else if (countO == 3)
+			winner = Optional.of(1);
 		
 		return winner;
 		
