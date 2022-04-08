@@ -18,15 +18,15 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Button fx:id="btnEasy" layoutX="148.0" layoutY="344.0" mnemonicParsing="false" onAction="#chooseDifficulty" prefHeight="66.0" prefWidth="111.0" text="Facile" />
-      <Button fx:id="btnHard" layoutX="342.0" layoutY="344.0" mnemonicParsing="false" onAction="#chooseDifficulty" prefHeight="66.0" prefWidth="111.0" text="Difficile" />
+      <Button fx:id="btnEasy" layoutX="148.0" layoutY="344.0" mnemonicParsing="false" onAction="#setDifficultyToEasy" prefHeight="66.0" prefWidth="111.0" text="Facile" />
+      <Button fx:id="btnHard" layoutX="342.0" layoutY="344.0" mnemonicParsing="false" onAction="#setDifficultyToHard" prefHeight="66.0" prefWidth="111.0" text="Difficile" />
       <Button fx:id="btnStart" layoutX="231.0" layoutY="445.0" mnemonicParsing="false" onAction="#loadAI" prefHeight="50.0" prefWidth="111.0" text="Commencer" visible="false" />
       <Label fx:id="difficultyLabel" layoutX="74.0" layoutY="252.0" text="Choisissez le niveau de difficulté">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btnPlay" layoutX="237.0" layoutY="377.0" mnemonicParsing="false" onAction="#goToGame" prefHeight="77.0" prefWidth="126.0" text="Jouer" visible="false" >
+      <Button fx:id="btnPlay" layoutX="237.0" layoutY="377.0" mnemonicParsing="false" onAction="#goToAIGame" prefHeight="77.0" prefWidth="126.0" text="Jouer" visible="false" >
          <font>
             <Font size="31.0" />
          </font>

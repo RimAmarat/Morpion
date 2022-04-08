@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+import ai.Coup;
+
+
 public class ControllerAIGame {
 	
 	@FXML
@@ -11,5 +14,11 @@ public class ControllerAIGame {
 	
 	@FXML
 	private Label currentPlayer;
+	
+	public void startGame() {
+		
+		
+		
+	}
 
 }

@@ -16,9 +16,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//BorderPane root = new BorderPane();
 			Parent root = FXMLLoader.load(getClass().getResource("/ViewMain.fxml"));
-			Scene scene = new Scene(root,600,550);
+			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Tic Tac Toe"); // Title
 			Image icon = new Image("blue_circle.png"); // Icon

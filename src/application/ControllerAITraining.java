@@ -128,7 +128,7 @@ public class ControllerAITraining {
 		
 	}
 	
-	public void goToGame(ActionEvent event) {
+	public void goToAIGame(ActionEvent event) {
 		try {
 			root = FXMLLoader.load(getClass().getResource("/AIGameView.fxml"));
 		    stage = (Stage)((Node)event.getSource()).getScene().getWindow();

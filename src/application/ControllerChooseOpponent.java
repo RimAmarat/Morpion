@@ -41,6 +41,21 @@ public class ControllerChooseOpponent {
 		}
 	}
 	
+	public void goToHumanGame(ActionEvent event) {
+		try {
+			root = FXMLLoader.load(getClass().getResource("/HumanGameView.fxml"));
+		    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+
+			stage.show();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void switchToMain(ActionEvent event) {
 		try {
 			root = FXMLLoader.load(getClass().getResource("/ViewMain.fxml"));

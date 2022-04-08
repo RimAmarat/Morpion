@@ -34,12 +34,10 @@ public class ControllerMain extends Application {
 		
 		try {
 			
-			int width = 400;
-			int height = 400;
-			
 			// create scene
-			root = FXMLLoader.load(getClass().getResource("../ViewMain.fxml"));
-			scene = new Scene(root, width, height);
+			root = FXMLLoader.load(getClass().getResource("/ViewMain.fxml"));
+			scene = new Scene(root);
+			
 			// css is unnecessary at the moment
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Tic Tac Toe"); // Title
@@ -66,9 +64,6 @@ public class ControllerMain extends Application {
 	 */
 	@FXML
 	public void switchToChooseOpp(ActionEvent event) {
-		
-		int width = 400;
-		int height = 400;
 		
 		try {
 			root = FXMLLoader.load(getClass().getResource("/ChooseOpponent.fxml"));
