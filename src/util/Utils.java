@@ -16,7 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
 
 
-public class Utils extends Application {
+public class Utils {
 	
 	private static Stage primaryStage;
 	
