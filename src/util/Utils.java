@@ -37,7 +37,7 @@ public class Utils {
 	 * 
 	 * @param view - the path of the new view
 	 */
-	public void switchView(String view, ActionEvent event) {
+	public void switchView(String view) {
 		
 		try {
 		
