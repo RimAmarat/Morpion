@@ -17,12 +17,15 @@ import javafx.fxml.FXMLLoader;
 import util.Utils;
 
 
-public class ControllerMain extends Application {
-	private Parent root;
+public class ControllerMainMenu extends Application {
+
 	private Stage primaryStage;
-	private Scene scene;
+	
 	@FXML
-	private Button btnStart;
+	private Button buttonTrainerVsTrainer;
+	
+	@FXML
+	private Button buttonTrainerVsUnown;
 	
 	
 	public static void main(String[] args) {
@@ -32,25 +35,20 @@ public class ControllerMain extends Application {
 	@Override
 	public void start(Stage stage) {
 		
-		this.primaryStage = stage;
+		primaryStage = stage;
+		primaryStage.setResizable(false);
 		
 		Utils utils = new Utils();
 		utils.setPrimaryStage(stage);
 		
 		try {
+					
+			primaryStage.setTitle("Pokémon - Unown Battle");
 			
-			// create scene
-			root = FXMLLoader.load(getClass().getResource("../ViewMain.fxml"));
-			scene = new Scene(root);
-			
-			// css is unnecessary at the moment
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setTitle("Tic Tac Toe"); // Title
-			Image icon = new Image("blue_circle.png"); // Icon
+			Image icon = new Image("assets/unown_o.png");
 			primaryStage.getIcons().add(icon);
-			// display scene
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			
+			utils.switchView("../views/ViewMainMenu.fxml");
 			
 		
 		} catch(Exception exception) {
@@ -71,18 +69,6 @@ public class ControllerMain extends Application {
 		
 		Utils utils = new Utils();
 		utils.switchView("../ChooseOpponent.fxml");
-		
-	}
-	
-	/**
-	 * Loads the Game Test view
-	 * 
-	 * @param event - the triggered event
-	 */
-	@FXML
-	public void switchToGameTestView(ActionEvent event) {
-		
-		
 		
 	}
 	
