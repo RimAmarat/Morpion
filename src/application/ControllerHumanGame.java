@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
 
 import java.util.Optional;
 
@@ -42,6 +43,22 @@ public class ControllerHumanGame implements Initializable {
 			  
 			  Integer col = gameGrid.getColumnIndex(node);
 			  Integer row = gameGrid.getRowIndex(node);
+			  
+			  String imageUrl = "unown_x.png";
+			  
+			  // if it's player X turn
+			  if (turn == -1)
+				  imageUrl = "unown_x.png";
+			  
+			  // if it's player O turn
+			  else
+				  imageUrl = "unown_o.png";
+			  
+			  ImageView nodeImage = (ImageView) node;
+			  Image cellImage = new Image(imageUrl);
+			  
+			  // updates the cell's image
+			  nodeImage.setImage(cellImage);
 			  
 			  if (col == null)
 				  col = 0;
