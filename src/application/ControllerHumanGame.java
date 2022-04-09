@@ -24,7 +24,7 @@ public class ControllerHumanGame implements Initializable {
 	@FXML
 	GridPane gameGrid ;
 	
-	private Game gameInstance;
+	private Game game;
 	private int turn;
 	
 	@Override
@@ -32,24 +32,27 @@ public class ControllerHumanGame implements Initializable {
 		// TODO Auto-generated method stub
 	  ObservableList<Node> children = gameGrid.getChildren();
 	  
-	  gameInstance = new Game();
+	  game = new Game();
 	  turn = -1;  // player X starts
 
 	  for (Node node : children) {
 		  node.setOnMouseClicked(e -> {
 			  
-			  int col = gameGrid.getColumnIndex(node) - 1;
+			  if (game.isOver()) return;
 			  
-			  int row = 0;
+			  Integer col = gameGrid.getColumnIndex(node);
+			  Integer row = gameGrid.getRowIndex(node);
 			  
-			  // TODO fix the null value returned by getRowIndex
-			  try {
-				
-				  row = gameGrid.getRowIndex(node);
-				  
-			  } catch (NullPointerException exception) {}
+			  if (col == null)
+				  col = 0;
 			  
-			  Optional<Integer> winner = gameInstance.setCellValue(row, col, turn);
+			  if (row == null)
+				  row = 0;
+			  
+			  if (col > 0)
+				  col--;
+			  
+			  Optional<Integer> winner = game.setCellValue(row, col, turn);
 			  
 			  if (!winner.isEmpty()) {
 				  
@@ -57,7 +60,9 @@ public class ControllerHumanGame implements Initializable {
 					  System.out.println("The winner is player X !");
 				  
 				  else 
-					  System.out.println("The winneris play O !");
+					  System.out.println("The winneris player O !");
+				  
+				  game.setGameOver(true);
 				  
 			  }
 			  
