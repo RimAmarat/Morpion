@@ -8,6 +8,7 @@ import java.util.Optional;
 public class Game {
 
 	private int[][] grid;
+	private boolean gameOver;
 	
 	private void displayGrid() {
 		
@@ -37,6 +38,7 @@ public class Game {
 		// creates the game grid
 		// init each cell to 0
 		grid = new int[3][3];
+		gameOver = false;
 		
 		for (int i=0; i < 3; i++)
 			for (int j=0; j < 3; j++)
@@ -67,6 +69,25 @@ public class Game {
 		
 	}
 	
+	/**
+	 * Sets the game over value
+	 * 
+	 * @param gameOver - tells if the game is over
+	 */
+	public void setGameOver(boolean gameOver) {
+		
+		this.gameOver = gameOver;
+		
+	}
+	
+	/**
+	 * Tells if the game is over
+	 */
+	public boolean isOver() {
+		
+		return gameOver;
+		
+	}
 	/**
 	 * Checks if there is a winner and returns the id of the winner
 	 * 
