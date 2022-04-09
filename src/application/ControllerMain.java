@@ -1,5 +1,8 @@
 package application;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+
 //lib
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -40,7 +43,7 @@ public class ControllerMain extends Application {
 		try {
 			
 			// create scene
-			root = FXMLLoader.load(getClass().getResource("../ViewMain.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/ViewMain.fxml"));
 			scene = new Scene(root);
 			
 			// css is unnecessary at the moment
@@ -69,8 +72,9 @@ public class ControllerMain extends Application {
 	@FXML
 	public void switchToChooseOpp(ActionEvent event) {
 		
+		
 		Utils utils = new Utils();
-		utils.switchView("../ChooseOpponent.fxml");
+		utils.switchView("./../ChooseOpponent.fxml");
 		
 	}
 	

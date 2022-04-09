@@ -1,6 +1,8 @@
 package util;
 
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 
 // lib
 import javafx.application.Application;
@@ -41,7 +43,10 @@ public class Utils {
 		
 		try {
 		
+			Path path = (Path) FileSystems.getDefault().getPath(".").toAbsolutePath();
+			System.out.println("path from utils -> "+path);
 			Parent root = FXMLLoader.load(getClass().getResource(view));
+			
 			Scene scene = new Scene(root);
 			
 			Stage primaryStage = getPrimaryStage();

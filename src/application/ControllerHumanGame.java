@@ -44,6 +44,7 @@ public class ControllerHumanGame implements Initializable {
 			  Integer col = gameGrid.getColumnIndex(node);
 			  Integer row = gameGrid.getRowIndex(node);
 			  
+			  String path = "./resources/images/";
 			  String imageUrl = "unown_x.png";
 			  
 			  // if it's player X turn
@@ -55,7 +56,7 @@ public class ControllerHumanGame implements Initializable {
 				  imageUrl = "unown_o.png";
 			  
 			  ImageView nodeImage = (ImageView) node;
-			  Image cellImage = new Image(imageUrl);
+			  Image cellImage = new Image(path+imageUrl);
 			  
 			  // updates the cell's image
 			  nodeImage.setImage(cellImage);
