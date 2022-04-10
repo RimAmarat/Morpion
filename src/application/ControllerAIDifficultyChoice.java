@@ -26,9 +26,6 @@ public class ControllerAIDifficultyChoice {
 	 */
 	public void loadingEasy(ActionEvent event) {
 		
-		// start the loading
-		ControllerLoading controllerLoading = new ControllerLoading();
-		
 		Utils utils = new Utils();
 		utils.switchView("../views/ViewLoading.fxml");
 		
