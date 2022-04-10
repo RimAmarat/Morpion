@@ -19,7 +19,7 @@
       </ImageView>
       <MenuBar layoutY="-1.0" prefHeight="30.0" prefWidth="449.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Settings">
+          <Menu mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
             <items>
               <MenuItem mnemonicParsing="false" text="Configure the Unowns" />
             </items>
@@ -40,11 +40,11 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Text>
-      <Button fx:id="buttonPlayer" layoutX="191.0" layoutY="259.0" mnemonicParsing="false" text="Player">
+      <Button layoutX="191.0" layoutY="259.0" mnemonicParsing="false" onAction="#switchToGame" text="Player">
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Button fx:id="buttonComputer" layoutX="178.0" layoutY="316.0" mnemonicParsing="false" onAction="#switchToAIDifficultyChoice" text="Computer">
+      <Button layoutX="178.0" layoutY="316.0" mnemonicParsing="false" onAction="#switchToAIDifficultyChoice" text="Computer">
          <font>
             <Font size="16.0" />
          </font></Button>

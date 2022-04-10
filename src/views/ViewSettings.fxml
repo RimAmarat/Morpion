@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="475.0" maxWidth="449.0" minHeight="400.0" minWidth="449.0" prefHeight="428.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerMainMenu">
+<AnchorPane maxHeight="475.0" maxWidth="449.0" minHeight="400.0" minWidth="449.0" prefHeight="428.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerSettings">
    <children>
       <ImageView fitHeight="400.0" fitWidth="450.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -47,15 +47,16 @@
       <MenuButton layoutX="173.0" layoutY="147.0" mnemonicParsing="false" text="Difficulty">
         <items>
           <MenuItem mnemonicParsing="false" text="Easy" />
-          <MenuItem mnemonicParsing="false" text="Hard" />
+          <MenuItem mnemonicParsing="false" text="Medium" />
+            <MenuItem mnemonicParsing="false" text="Hard" />
         </items>
          <font>
             <Font size="16.0" />
          </font>
       </MenuButton>
-      <TextField layoutX="224.0" layoutY="216.0" prefHeight="25.0" prefWidth="86.0" />
-      <TextField layoutX="224.0" layoutY="252.0" prefHeight="25.0" prefWidth="86.0" />
-      <TextField layoutX="224.0" layoutY="288.0" prefHeight="25.0" prefWidth="86.0" />
+      <TextField layoutX="267.0" layoutY="215.0" prefHeight="25.0" prefWidth="86.0" />
+      <TextField layoutX="267.0" layoutY="251.0" prefHeight="25.0" prefWidth="86.0" />
+      <TextField layoutX="267.0" layoutY="287.0" prefHeight="25.0" prefWidth="86.0" />
       <Text layoutX="38.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learning rate:">
          <font>
             <Font size="16.0" />
@@ -81,5 +82,6 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <Button layoutX="16.0" layoutY="389.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
    </children>
 </AnchorPane>
