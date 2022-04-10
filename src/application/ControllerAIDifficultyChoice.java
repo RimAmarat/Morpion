@@ -18,5 +18,20 @@ public class ControllerAIDifficultyChoice {
 		utils.switchView("../views/ViewMainMenu.fxml");
 		
 	}
+	
+	/**
+	 * Leads the user to the loading view in easy mode
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void loadingEasy(ActionEvent event) {
+		
+		// start the loading
+		ControllerLoading controllerLoading = new ControllerLoading();
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewLoading.fxml");
+		
+	}
 
 }
