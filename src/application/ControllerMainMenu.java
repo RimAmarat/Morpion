@@ -2,17 +2,10 @@ package application;
 
 //lib
 import javafx.application.Application;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import javafx.event.ActionEvent;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 
 import util.Utils;
 
@@ -20,12 +13,6 @@ import util.Utils;
 public class ControllerMainMenu extends Application {
 
 	private Stage primaryStage;
-	
-	@FXML
-	private Button buttonPlayer;
-	
-	@FXML
-	private Button buttonComputer;
 	
 	
 	public static void main(String[] args) {
@@ -64,11 +51,34 @@ public class ControllerMainMenu extends Application {
 	 * 
 	 * @param event - the triggered event
 	 */
-	@FXML
 	public void switchToAIDifficultyChoice(ActionEvent event) {
 		
 		Utils utils = new Utils();
 		utils.switchView("../views/ViewAIDifficultyChoice.fxml");
+		
+	}
+	
+	/**
+	 * Loads the Game view
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void switchToGame(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewGame.fxml");
+		
+	}
+	
+	/**
+	 * Loads the settings view
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void switchToSettings(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewSettings.fxml");
 		
 	}
 	
