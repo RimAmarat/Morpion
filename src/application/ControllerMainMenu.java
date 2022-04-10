@@ -65,10 +65,10 @@ public class ControllerMainMenu extends Application {
 	 * @param event - the triggered event
 	 */
 	@FXML
-	public void switchToChooseOpp(ActionEvent event) {
+	public void switchToAIDifficultyChoice(ActionEvent event) {
 		
 		Utils utils = new Utils();
-		utils.switchView("../ChooseOpponent.fxml");
+		utils.switchView("../views/ViewAIDifficultyChoice.fxml");
 		
 	}
 	
