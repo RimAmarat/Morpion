@@ -21,8 +21,11 @@ public class ControllerLoading implements Initializable {
 	
 	@FXML private ProgressBar progressBar;
 	@FXML private Label labelTips;
-	private int difficulty;
+	public static int difficulty = 0;
 	
+	/**
+	 * Loads the AI according to the difficulty
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -30,12 +33,7 @@ public class ControllerLoading implements Initializable {
 		progressBar.setProgress(0.0);
 		
 		// setup training
-		AITrainingTask trainingTask = new AITrainingTask();
-		
-		// set difficulty
-		// 0 for easy
-		// 1 for hard
-		AITrainingTask.difficulty = 0;
+		AITrainingTask trainingTask = new AITrainingTask(ControllerLoading.difficulty);
 		
 		// update tips
 		labelTips
@@ -48,7 +46,6 @@ public class ControllerLoading implements Initializable {
 			.addListener((Observable o) -> {
 				
 				progressBar.setProgress(trainingTask.progressProperty().doubleValue());
-				System.out.println("Update bar " + progressBar.progressProperty());
 				
 			});	
 		
@@ -71,54 +68,4 @@ public class ControllerLoading implements Initializable {
 		
 	}
 	
-	/**
-	 * Trains the AI in the background
-	 */
-	public void loading() {
-		
-		// init the progress bar
-		progressBar.setProgress(0.0);
-		
-		// setup training
-		AITrainingTask trainingTask = new AITrainingTask();
-		
-		// set difficulty
-		// 0 for easy
-		// 1 for hard
-		AITrainingTask.difficulty = difficulty;
-		
-		// update tips
-		labelTips
-			.textProperty()
-			.bind(trainingTask.messageProperty());
-		
-		// update progressbar using listener
-		trainingTask
-			.progressProperty()
-			.addListener((Observable o) -> {
-				
-				progressBar.setProgress(trainingTask.progressProperty().doubleValue());
-				System.out.println("Update bar " + progressBar.progressProperty());
-				
-			});	
-		
-		// triggered when the task is over
-	    trainingTask.setOnSucceeded((EventHandler<WorkerStateEvent>) new EventHandler<WorkerStateEvent>() {
-	
-			@Override
-			public void handle(WorkerStateEvent arg0) {
-				
-				// load game view
-				Utils utils = new Utils();
-				utils.switchView("../views/ViewGame.fxml");
-				
-			}
-			
-	    });
-	
-		// start the task
-		new Thread(trainingTask).start();
-		
-	}
-
 }
