@@ -22,10 +22,10 @@ public class ControllerMainMenu extends Application {
 	private Stage primaryStage;
 	
 	@FXML
-	private Button buttonTrainerVsTrainer;
+	private Button buttonPlayer;
 	
 	@FXML
-	private Button buttonTrainerVsUnown;
+	private Button buttonComputer;
 	
 	
 	public static void main(String[] args) {
