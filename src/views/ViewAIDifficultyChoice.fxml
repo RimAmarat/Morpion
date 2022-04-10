@@ -40,7 +40,7 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Text>
-      <Button layoutX="104.0" layoutY="269.0" mnemonicParsing="false" text="Easy">
+      <Button layoutX="104.0" layoutY="269.0" mnemonicParsing="false" onAction="#loadingEasy" text="Easy">
          <font>
             <Font size="16.0" />
          </font></Button>
