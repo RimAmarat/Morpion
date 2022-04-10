@@ -60,6 +60,8 @@ public class ControllerAITraining {
 	
 	private int difficulty; // 0 for easy, 1 for hard
 
+	AITrainingTask trainingTask ;
+	
 	public void displayStartButton() {
 		btnStart.setVisible(true);
 		btnEasy.setVisible(false);
@@ -99,12 +101,12 @@ public class ControllerAITraining {
 		progressBarAI.setProgress(0);
 
 		// setup training
-		AITrainingTask trainingTask = new AITrainingTask();
+		AITrainingTask trainingTask = new AITrainingTask(difficulty);
 		
 		// set difficulty
 		// 0 for easy
 		// 1 for hard
-		AITrainingTask.difficulty = difficulty;
+		//AITrainingTask.difficulty = difficulty;
 		
 		progressLabel.textProperty().bind(trainingTask.messageProperty());
 		trainingTask.progressProperty()
@@ -131,10 +133,14 @@ public class ControllerAITraining {
 		
 	}
 	
+	public MultiLayerPerceptron getModel() {
+		return trainingTask.net;
+	}
+	
 	public void goToAIGame(ActionEvent event) {
 		
 		Utils utils = new Utils();
-		utils.switchView("../AIGameView.fxml");
+		utils.switchView("../AIGameView.fxml", trainingTask.net);
 		
 	}
 

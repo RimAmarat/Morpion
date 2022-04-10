@@ -6,14 +6,22 @@ import javafx.concurrent.Task;
 
 public class AITrainingTask extends Task<Double> {
 	
-	public static int difficulty = 0;
+	public int difficulty = 0;
 	
-	@Override
-	protected Double call() throws Exception {
-		// Initialisation de coups
-		HashMap<Integer, Coup> coups = Test.loadGames("./resources/dataset/Tic_tac_initial_results.csv");
-		Test.saveGames(coups, "./resources/train_dev_test/", 0.7);
-
+	public int outputSize = 9;
+	
+	public double lr ;
+	
+	public int hiddenLayerSize ;
+	
+	public int numberOfHiddenLayers ;
+	
+	public MultiLayerPerceptron net ;
+		
+	public AITrainingTask(int difficulty) {
+		
+		this.difficulty = difficulty;
+		
 		// LOAD CONFIG ...
 		ConfigFileLoader cfl = new ConfigFileLoader();
 		cfl.loadConfigFile("./resources/config.txt");
@@ -23,22 +31,31 @@ public class AITrainingTask extends Task<Double> {
 		
 		switch (difficulty) {
 		
-			case 0:
-				config = cfl.get("F");
-				System.out.println("Loading easy mode");
-				break;
-				
-			case 1:
-				config = cfl.get("D");
-				System.out.println("Loading hard mode");
-				break;
-				
-			default:
-				break;
+		case 0:
+			config = cfl.get("F");
+			System.out.println("Loading easy mode");
+			break;
+			
+		case 1:
+			config = cfl.get("D");
+			System.out.println("Loading hard mode");
+			break;
+			
+		default:
+			break;
+	}
+		// set parameters from config
+		hiddenLayerSize = config.hiddenLayerSize;
+		numberOfHiddenLayers = config.numberOfhiddenLayers;
+		lr = config.learningRate;
 		
-		}
-		
-		System.out.println("Test.main() : "+config);
+	}
+	
+	@Override
+	protected Double call() throws Exception {
+		// Initialisation de coups
+		HashMap<Integer, Coup> coups = Test.loadGames("./resources/dataset/Tic_tac_initial_results.csv");
+		Test.saveGames(coups, "./resources/train_dev_test/", 0.7);
 		
 		//TRAIN THE MODEL ...
 
@@ -52,20 +69,16 @@ public class AITrainingTask extends Task<Double> {
 		
 		// ************************************************************************************************
 		System.out.println("\n START TRAINING ... ");
-		int size = 9;
-		int h = config.hiddenLayerSize;
-		double lr = config.learningRate;
-		int l = config.numberOfhiddenLayers;
-		int[] layers = new int[l+2];
-		layers[0] = size ;
-		for (int i = 0; i < l; i++)
-			layers[i+1] = h ;
+		int[] layers = new int[numberOfHiddenLayers+2];
+		layers[0] = outputSize ;
+		for (int i = 0; i < numberOfHiddenLayers; i++)
+			layers[i+1] = hiddenLayerSize ;
 		
-		layers[layers.length-1] = size ;
+		layers[layers.length-1] = outputSize ;
 		//
 		double epochs = 100000 ;
 		double error = 0.0 ;
-		MultiLayerPerceptron net = new MultiLayerPerceptron(layers, lr, new SigmoidalTransferFunction());
+		net = new MultiLayerPerceptron(layers, lr, new SigmoidalTransferFunction());
 		//TRAINING ...
 		for(int i = 0; i < epochs; i++){
 

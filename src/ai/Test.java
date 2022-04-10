@@ -43,6 +43,7 @@ public class Test {
 			//
 			HashMap<Integer, Coup> mapTest = loadCoupsFromFile("./resources/train_dev_test/test.txt");
 			c = mapTrain.get((int)(Math.round(Math.random() * mapTest.size())));
+			System.out.println("Input: "+Arrays.toString(c.in));
 			res = play(net, c);
 			System.out.println("Test predicted: "+Arrays.toString(res) + " -> true: "+ Arrays.toString(c.out));
 		} 
@@ -85,7 +86,14 @@ public class Test {
 				Coup c = null ;
 				while ( c == null )
 					c = mapTrain.get((int)(Math.round(Math.random() * mapTrain.size())));
-
+				/*
+				System.out.println("input -> ");
+				for(double input : c.in)
+					System.out.print(input);
+				System.out.println("output -> ");
+				for(double output : c.out)
+					System.out.print(output);
+				*/
 				error += net.backPropagate(c.in, c.out);
 
 				if ( i % 1000 == 0 && verbose) System.out.println("Error at step "+i+" is "+ (error/(double)i));
