@@ -8,15 +8,15 @@ public class AITrainingTask extends Task<Double> {
 	
 	public int difficulty = 0;
 	
-	public int outputSize = 9;
+	private int outputSize = 9;
 	
-	public double lr ;
+	private double lr ;
 	
-	public int hiddenLayerSize ;
+	private int hiddenLayerSize ;
 	
-	public int numberOfHiddenLayers ;
+	private int numberOfHiddenLayers ;
 	
-	public MultiLayerPerceptron net ;
+	private MultiLayerPerceptron net ;
 		
 	public AITrainingTask(int difficulty) {
 		
