@@ -16,7 +16,7 @@ public class AITrainingTask extends Task<Double> {
 	
 	private int numberOfHiddenLayers ;
 	
-	private MultiLayerPerceptron net ;
+	public MultiLayerPerceptron net ;
 		
 	public AITrainingTask(int difficulty) {
 		

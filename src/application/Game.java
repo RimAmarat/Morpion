@@ -10,6 +10,10 @@ public class Game {
 	private int[][] grid;
 	private boolean gameOver;
 	
+	public int[][] getGrid() {
+		return grid;
+	}
+	
 	private void displayGrid() {
 		
 		for (int i=0; i < 3; i++) {

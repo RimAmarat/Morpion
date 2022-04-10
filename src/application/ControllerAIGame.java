@@ -106,24 +106,36 @@ public class ControllerAIGame implements Initializable{
 		this.model = model;
 	}
 	
-	public void updateGrid(double[] output) {
+	public int[] aiPlay() {
+		double[] input = new double[9];
+		int k = 0;
+		int[][] gridTable = game.getGrid();
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
-				
+				input[k] = gridTable[i][j];
+				k++;
 			}
 		}
-		
-		for(double o : output)
-			System.out.print(o);
-	}
-	public boolean aiPlay() {
-		double[] input = {0.0,0.0,0.0,-1.0,0.0,0.0,0.0,0.0,0.0};
 		Coup coup = new Coup(9, "game");
 		coup.in = input;
 		coup.out = model.forwardPropagation(coup.in);
-		for(double output : coup.out)
-			System.out.print(output);
-		return false;
+		
+		double[][] output = new double[3][3];
+		k = 0;
+		int prochain_coup = 0;
+		
+		while(input[prochain_coup] != 0.0 && prochain_coup < 9)
+			prochain_coup++;
+		
+		while(coup.out[k] > coup.out[prochain_coup] && k < 9) {
+			prochain_coup = k;
+			k++;
+		}
+		int j = k%3;
+		int i = (k - j)/3;
+		
+		int[] aiMove = {i,j};
+		return aiMove;
 	}
 
 
