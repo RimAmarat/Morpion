@@ -6,7 +6,7 @@ import java.nio.file.Path;
 
 import ai.MultiLayerPerceptron;
 import application.ControllerAIGame;
-import application.ControllerAITraining;
+
 // lib
 import javafx.application.Application;
 
