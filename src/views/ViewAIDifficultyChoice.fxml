@@ -44,11 +44,11 @@
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Button layoutX="289.0" layoutY="269.0" mnemonicParsing="false" text="Hard">
+      <Button layoutX="289.0" layoutY="269.0" mnemonicParsing="false" onAction="#loadingHard" text="Hard">
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Button layoutX="185.0" layoutY="269.0" mnemonicParsing="false" text="Medium">
+      <Button layoutX="185.0" layoutY="269.0" mnemonicParsing="false" onAction="#loadingMedium" text="Medium">
          <font>
             <Font size="16.0" />
          </font>

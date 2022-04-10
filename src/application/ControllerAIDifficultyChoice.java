@@ -26,6 +26,37 @@ public class ControllerAIDifficultyChoice {
 	 */
 	public void loadingEasy(ActionEvent event) {
 		
+		// set the difficulty
+		ControllerLoading.difficulty = 0;
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewLoading.fxml");
+		
+	}
+	
+	/**
+	 * Leads the user to the loading view in hard mode
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void loadingHard(ActionEvent event) {
+		
+		ControllerLoading.difficulty = 1;
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewLoading.fxml");
+		
+	}
+	
+	/**
+	 * Leads the user to the loading view in medium mode
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void loadingMedium(ActionEvent event) {
+		
+		ControllerLoading.difficulty = 2;
+		
 		Utils utils = new Utils();
 		utils.switchView("../views/ViewLoading.fxml");
 		

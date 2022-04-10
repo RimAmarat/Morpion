@@ -41,6 +41,11 @@ public class AITrainingTask extends Task<Double> {
 			System.out.println("Loading hard mode");
 			break;
 			
+		case 2:
+			config = cfl.get("M");
+			System.out.println("Loading medium mode");
+			break;
+			
 		default:
 			break;
 	}
