@@ -26,13 +26,6 @@ public class Utils {
 	private static Stage primaryStage;
 	
 	/**
-	 * loader 
-	 * 
-	 * allows us to get the AIGame controller in order to set up its parameters
-	 */
-	public FXMLLoader loader ;
-	
-	/**
 	 * Sets the primary stage
 	 * 
 	 * @param primaryStage - the primary stage
@@ -77,8 +70,30 @@ public class Utils {
 	
 	public void switchView(String view, MultiLayerPerceptron mlp) {
 		switchView(view);
-		ControllerAIGame mycontroller = loader.getController();
-		mycontroller.setModel(mlp);
+		try {
+			
+			Path path = (Path) FileSystems.getDefault().getPath(".").toAbsolutePath();
+			System.out.println("path from utils -> "+path);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+			Parent root = loader.load();
+			ControllerAIGame mycontroller = loader.getController();
+			mycontroller.setModel(mlp);
+
+			Scene scene = new Scene(root);
+			
+			Stage primaryStage = getPrimaryStage();
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+			
+		} catch (IOException exception) {
+			
+			System.out.println(exception.getMessage());
+			
+		}
+		if(mlp == null) System.out.println("mlp is null");
+		else System.out.println("mlp is not null");
+		System.out.println("switchView(String view, MultiLayerPerceptron mlp) called ");
 		
 	}
 

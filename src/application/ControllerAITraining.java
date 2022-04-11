@@ -140,8 +140,8 @@ public class ControllerAITraining {
 	public void goToAIGame(ActionEvent event) {
 		
 		Utils utils = new Utils();
-		utils.switchView("../AIGameView.fxml", trainingTask.net);
-		
+		utils.switchView("../AIGameView.fxml");
+	
 	}
 
 }
