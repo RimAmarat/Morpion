@@ -42,6 +42,8 @@ public class ControllerGame implements Initializable {
 		for (Node node : gridPaneChildren) {
 			  node.setOnMouseClicked(e -> {
 				  
+				  Utils utils = new Utils();
+				  
 				  if (game.isOver()) return;
 				  
 				  Integer col = gameGrid.getColumnIndex(node);
@@ -57,7 +59,6 @@ public class ControllerGame implements Initializable {
 				  // if it's player O turn
 				  else
 					  imageUrl = "unown_o.png";
-				  
 				  
 				  ImageView nodeImage = (ImageView) node;
 				  Image cellImage = new Image(path+imageUrl);
@@ -75,11 +76,9 @@ public class ControllerGame implements Initializable {
 				  
 				  if (!winner.isEmpty()) {
 					  
-					  if (winner.get() == -1)
-						  System.out.println("The winner is player X !");
-					  
-					  else 
-						  System.out.println("The winneris player O !");
+					  ControllerGameWin.winner = winner.get();
+
+					  utils.switchView("../views/ViewGameWin.fxml");
 					  
 					  game.setGameOver(true);
 					  
