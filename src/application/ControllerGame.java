@@ -47,6 +47,7 @@ public class ControllerGame implements Initializable {
 				  Integer col = gameGrid.getColumnIndex(node);
 				  Integer row = gameGrid.getRowIndex(node);
 				  
+				  String path = "./assets/";
 				  String imageUrl = "unown_x.png";
 				  
 				  // if it's player X turn
@@ -59,7 +60,7 @@ public class ControllerGame implements Initializable {
 				  
 				  
 				  ImageView nodeImage = (ImageView) node;
-				  Image cellImage = new Image(imageUrl);
+				  Image cellImage = new Image(path+imageUrl);
 				  
 				  // updates the cell's image
 				  nodeImage.setImage(cellImage);
@@ -87,7 +88,7 @@ public class ControllerGame implements Initializable {
 				  // player O turn
 				  if (turn == -1) {
 					  
-					  playerTurnIcon.setImage(new Image("unown_o.png"));
+					  playerTurnIcon.setImage(new Image(path+"unown_o.png"));
 					  turn += 2;
 					  
 				  }
@@ -95,7 +96,7 @@ public class ControllerGame implements Initializable {
 				  // player X turn
 				  else {
 					
-					  playerTurnIcon.setImage(new Image("unown_x.png"));
+					  playerTurnIcon.setImage(new Image(path+"unown_x.png"));
 					  turn -= 2;
 					  
 				  }
