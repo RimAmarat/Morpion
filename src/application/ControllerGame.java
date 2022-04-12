@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import ai.Coup;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
@@ -18,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.animation.FadeTransition;
 import javafx.util.Duration;
 
-
+import ai.MultiLayerPerceptron;
 import util.Utils;
 
 
@@ -32,6 +33,7 @@ public class ControllerGame implements Initializable {
 	
 	private Game game;
 	private int turn;
+	private MultiLayerPerceptron model;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -97,6 +99,26 @@ public class ControllerGame implements Initializable {
 				  
 				  winner = game.setCellValue(row, col, turn);
 				  
+				  // Calling the ai to play
+				  int k = aiPlay();
+				  System.out.println("k = "+k);
+				  turn = 1;
+				  col = k;
+				  row = (k - col);
+				  System.out.println("player o -> "+turn+" coordinates "+row+", "+col);
+				  
+				  if (col == 3) col = 2;
+				  if (row == 3) row = 2;
+				
+				  winner = game.setCellValue(row, col, turn);
+				  nodeImage = (ImageView) gameGrid.getChildren().get(k);
+				  
+				  // updates the cell's image
+				  System.out.println("image not set yet ...");
+				  nodeImage.setImage(new Image(path+"unown_o.png"));
+				  System.out.println("image set");
+				  
+				  // check winner
 				  if (!winner.isEmpty()) {
 					  
 					  ControllerGameWin.winner = winner.get();
@@ -131,6 +153,40 @@ public class ControllerGame implements Initializable {
 		
 	}
 	
+	public int aiPlay() {
+		double[] input = new double[9];
+		int k = 0;
+		int[][] gridTable = game.getGrid();
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				input[k] = gridTable[i][j];
+				System.out.println("input["+k+"] = "+input[k]);
+				k++;
+			}
+		}
+		Coup coup = new Coup(9, "game");
+		coup.in = input;
+		coup.out = model.forwardPropagation(coup.in);
+		
+		double[][] output = new double[3][3];
+		k = 0;
+		int prochain_coup = 0;
+		
+		while(input[k] != 0.0 && k < 9)
+			k++;
+		
+		prochain_coup = k;
+		k++;
+		while(coup.out[k] > coup.out[prochain_coup] && k < 8) {
+			if(input[k] == 0.0) {
+				prochain_coup = k;
+			}
+			k++;
+		}
+
+		return prochain_coup;
+	}
+	
 	/**
 	 * Leads the user to the main menu
 	 * 
@@ -142,5 +198,7 @@ public class ControllerGame implements Initializable {
 		utils.switchView("../views/ViewMainMenu.fxml");
 		
 	}
+	
+	public void setModel(MultiLayerPerceptron model) { this.model = model; }
 
 }
