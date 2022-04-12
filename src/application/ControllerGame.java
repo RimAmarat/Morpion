@@ -15,6 +15,9 @@ import javafx.scene.layout.GridPane;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 
+import javafx.animation.FadeTransition;
+import javafx.util.Duration;
+
 
 import util.Utils;
 
@@ -48,6 +51,14 @@ public class ControllerGame implements Initializable {
 				  
 				  if (game.isOver()) return;
 				  
+				  // TOFIX
+				  if (winner.isEmpty() && game.noMoreCellAvailable()) {
+					
+					  utils.switchView("../views/ViewGameDraw.fxml");
+					  return;
+					  
+				  }
+				  
 				  Integer col = gameGrid.getColumnIndex(node);
 				  Integer row = gameGrid.getRowIndex(node);
 				  
@@ -76,6 +87,13 @@ public class ControllerGame implements Initializable {
 				  
 				  // updates the cell's image
 				  nodeImage.setImage(cellImage);
+				  
+				  // transition to display image (fade)
+				  FadeTransition transition = new FadeTransition(Duration.millis(250), nodeImage);
+				  
+				  transition.setFromValue(0.0);
+				  transition.setToValue(1.0);
+				  transition.play();
 				  
 				  winner = game.setCellValue(row, col, turn);
 				  
