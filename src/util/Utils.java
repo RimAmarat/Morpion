@@ -5,7 +5,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
 import ai.MultiLayerPerceptron;
-import application.ControllerAIGame;
+import application.ControllerGame;
 
 // lib
 import javafx.application.Application;
@@ -76,7 +76,7 @@ public class Utils {
 			System.out.println("path from utils -> "+path);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
 			Parent root = loader.load();
-			ControllerAIGame mycontroller = loader.getController();
+			ControllerGame mycontroller = loader.getController();
 			mycontroller.setModel(mlp);
 
 			Scene scene = new Scene(root);
