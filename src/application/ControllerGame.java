@@ -44,10 +44,21 @@ public class ControllerGame implements Initializable {
 				  
 				  Utils utils = new Utils();
 				  
+				  Optional<Integer> winner = Optional.empty();
+				  
 				  if (game.isOver()) return;
 				  
 				  Integer col = gameGrid.getColumnIndex(node);
 				  Integer row = gameGrid.getRowIndex(node);
+				  
+				  if (col == null)
+					  col = 0;
+				  
+				  if (row == null)
+					  row = 0;
+				  
+				  // check if the case if available
+				  if (!game.caseAvailable(row, col)) return;
 				  
 				  String path = "./assets/";
 				  String imageUrl = "unown_x.png";
@@ -66,13 +77,7 @@ public class ControllerGame implements Initializable {
 				  // updates the cell's image
 				  nodeImage.setImage(cellImage);
 				  
-				  if (col == null)
-					  col = 0;
-				  
-				  if (row == null)
-					  row = 0;
-				  
-				  Optional<Integer> winner = game.setCellValue(row, col, turn);
+				  winner = game.setCellValue(row, col, turn);
 				  
 				  if (!winner.isEmpty()) {
 					  
@@ -100,7 +105,9 @@ public class ControllerGame implements Initializable {
 					  
 				  }
 				  
-			  });
+			  }
+			  
+			);
 			  
 		  }
 		

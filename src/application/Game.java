@@ -216,4 +216,9 @@ public class Game {
 		return grid;
 	}
 	
+	public boolean caseAvailable(int row, int col) {
+		
+		return grid[row][col] == 0;
+		
+	}
 }
