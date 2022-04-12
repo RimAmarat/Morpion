@@ -221,4 +221,22 @@ public class Game {
 		return grid[row][col] == 0;
 		
 	}
+	
+	public boolean noMoreCellAvailable() {
+		
+		int count = 9;
+		
+		for (int i=0; i < 3; i++)
+			for (int j=0; j < 3; j++) {
+				
+				if (grid[i][j] != 0) count--;
+				
+			}
+		
+		if (count < 0) return true;
+		
+		return false;
+		
+	}
+	
 }
