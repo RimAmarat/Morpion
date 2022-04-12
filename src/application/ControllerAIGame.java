@@ -51,7 +51,7 @@ public class ControllerAIGame implements Initializable{
 			  Integer col = gameGrid.getColumnIndex(node);
 			  Integer row = gameGrid.getRowIndex(node);
 			  
-			  String path = "./resources/images/";
+			  String path = "./assets/";
 			  String imageUrl = "unown_x.png";
 			  
 			  // if it's player X turn (the human)
@@ -148,7 +148,7 @@ public class ControllerAIGame implements Initializable{
 		
 		prochain_coup = k;
 		k++;
-		while(coup.out[k] > coup.out[prochain_coup] && k < 9) {
+		while(coup.out[k] > coup.out[prochain_coup] && k < 8) {
 			if(input[k] == 0.0) {
 				prochain_coup = k;
 			}
