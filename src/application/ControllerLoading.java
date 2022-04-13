@@ -56,10 +56,12 @@ public class ControllerLoading implements Initializable {
 			public void handle(WorkerStateEvent arg0) {
 				
 				// load game view
+				ControllerGame.isAgainstAi = true;
+				
 				Utils utils = new Utils();
 				utils.switchView("../views/ViewGame.fxml", trainingTask.net);
 
-				//utils.switchView("./../views/AIGameView.fxml", trainingTask.net);
+				//utils.switchView("../views/AIGameView.fxml", trainingTask.net);
 				if(trainingTask.net == null) System.out.println("trainingTask.net is null");
 				else System.out.println("trainingTask.net is not null");
 				System.out.println("going to AIGameView ");	
