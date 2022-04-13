@@ -91,6 +91,18 @@ public class ControllerAITraining {
 	
 	public void loadAI(ActionEvent event) {
 
+		// setup training
+		AITrainingTask trainingTask = new AITrainingTask(difficulty);
+		
+		
+		if(trainingTask.modelExists)
+		{
+			System.out.println("model exists");
+			btnPlay.setVisible(true);
+			return ;
+		}
+		
+		
 		// show progress bar and label and hide start button
 		progressLabel.setVisible(true);
 		progressBarAI.setVisible(true);
@@ -99,9 +111,6 @@ public class ControllerAITraining {
 		
 		// init the progress bar
 		progressBarAI.setProgress(0);
-
-		// setup training
-		AITrainingTask trainingTask = new AITrainingTask(difficulty);
 		
 		// set difficulty
 		// 0 for easy
@@ -114,7 +123,7 @@ public class ControllerAITraining {
 			progressBarAI.setProgress(trainingTask.progressProperty().doubleValue());
 		});
 	    trainingTask.setOnSucceeded((EventHandler<WorkerStateEvent>) new EventHandler<WorkerStateEvent>() {
-
+	    	
 			@Override
 			public void handle(WorkerStateEvent arg0) {
 				// TODO Auto-generated method stub
@@ -140,7 +149,7 @@ public class ControllerAITraining {
 	public void goToAIGame(ActionEvent event) {
 		
 		Utils utils = new Utils();
-		utils.switchView("../AIGameView.fxml");
+		utils.switchView("./views/AIGameView.fxml");
 	
 	}
 
