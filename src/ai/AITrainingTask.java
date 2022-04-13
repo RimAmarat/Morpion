@@ -1,5 +1,6 @@
 package ai;
 
+import java.io.File;
 import java.util.HashMap;
 
 import javafx.concurrent.Task;
@@ -17,6 +18,8 @@ public class AITrainingTask extends Task<Double> {
 	private int numberOfHiddenLayers ;
 	
 	public MultiLayerPerceptron net ;
+	
+	public boolean modelExists = false ;
 		
 	public AITrainingTask(int difficulty) {
 		
@@ -58,6 +61,18 @@ public class AITrainingTask extends Task<Double> {
 	
 	@Override
 	protected Double call() throws Exception {
+		
+		String modelFile = "mlp_"+numberOfHiddenLayers+"_"+lr+"_"+hiddenLayerSize+".srl" ;
+		String filePath = "./resources/train/"+modelFile ;
+		
+		modelExists = lookForModel(modelFile);
+		
+		if(modelExists) {
+			net.load(filePath);
+			System.out.println("No training because file already exists ");
+			return 0.0;
+		}
+
 		// Initialisation de coups
 		HashMap<Integer, Coup> coups = Test.loadGames("./resources/dataset/Tic_tac_initial_results.csv");
 		Test.saveGames(coups, "./resources/train_dev_test/", 0.7);
@@ -111,11 +126,38 @@ public class AITrainingTask extends Task<Double> {
 		error /= epochs ;
 		System.out.println("Error is "+error);
 		
-		System.out.println("Learning completed!");
+		// Save the model
+		net.save("./resources/train/", lr, hiddenLayerSize, numberOfHiddenLayers);
+		
+
         return error;
 	}
 	
 	
-	
+	public boolean lookForModel(String modelFile) {
+		String filePath = "./resources/train/"+modelFile ;
+		boolean fileExists = false;
+		try  
+		{         
+			File f= new File(filePath);           //file to be deleted  
+			if(f.exists())                      //returns Boolean value  
+			{  
+				System.out.println(modelFile + " file exists ");   //getting and printing the file name  
+				fileExists = true;
+			}  
+			else  
+			{  
+				System.out.println(modelFile + " file doesn't exists ");
+				System.out.println("failed");  
+			}  
+		}  
+		catch(Exception e)  
+		{  
+			e.printStackTrace();  
+		}  
+		
+		return fileExists;
+		
+	}
 
 }

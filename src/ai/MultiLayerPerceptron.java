@@ -76,14 +76,23 @@ public class MultiLayerPerceptron implements Cloneable, Serializable {
 		return (error / output.length);
 	}
 	
-	public boolean save(String path){
+	public boolean save(String location, double lr, int hiddenLayerSize, int numberOfHiddenLayers){
 		try{
+			System.out.println("Learning completed!");
+			System.out.println("**********************************");
+			System.out.println("Model parameters ");
+			System.out.println("Number of hidden layers "+numberOfHiddenLayers);
+			System.out.println("Hidden Layer Size "+hiddenLayerSize);
+			System.out.println("Learning Rate "+lr);
+			System.out.println("**********************************");
+			String path = location+"mlp_"+numberOfHiddenLayers+"_"+lr+"_"+hiddenLayerSize+".srl";
 			FileOutputStream fout = new FileOutputStream(path);
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
 			oos.writeObject(this);
 			oos.close();
 		}
 		catch (Exception e) { 
+			
 			return false;
 		}
 		return true;
