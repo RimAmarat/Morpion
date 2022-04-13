@@ -57,7 +57,7 @@ public class ControllerLoading implements Initializable {
 				
 				// load game view
 				Utils utils = new Utils();
-				utils.switchView("../AIGameView.fxml", trainingTask.net);
+				utils.switchView("../views/ViewGame.fxml", trainingTask.net);
 				if(trainingTask.net == null) System.out.println("trainingTask.net is null");
 				else System.out.println("trainingTask.net is not null");
 				System.out.println("going to AIGameView ");	
