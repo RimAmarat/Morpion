@@ -36,12 +36,14 @@ public class ControllerGame implements Initializable {
 	private Game game;
 	private int turn;
 	public static MultiLayerPerceptron model = null;
+	private int coups;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		game = new Game();
 		turn = -1;  // player X engages first
+		coups = 0;
 		
 		// get the gridpane nodes
 		ObservableList<Node> gridPaneChildren = gameGrid.getChildren();
@@ -54,14 +56,6 @@ public class ControllerGame implements Initializable {
 				  Optional<Integer> winner = Optional.empty();
 				  
 				  if (game.isOver()) return;
-				  
-				  // TOFIX
-				  if (winner.isEmpty() && game.noMoreCellAvailable()) {
-					
-					  utils.switchView("../views/ViewGameDraw.fxml");
-					  return;
-					  
-				  }
 				  
 				  Integer col = gameGrid.getColumnIndex(node);
 				  Integer row = gameGrid.getRowIndex(node);
@@ -100,6 +94,8 @@ public class ControllerGame implements Initializable {
 				  transition.play();
 				  
 				  winner = game.setCellValue(row, col, turn);
+				  coups++;
+				  System.out.println("Coups: " + coups);
 				  
 				  if (ControllerGame.isAgainstAi) {
 					  
@@ -107,15 +103,26 @@ public class ControllerGame implements Initializable {
 					  int k = aiPlay();
 					  System.out.println("k = "+k);
 					  turn = 1;
-					  col = k;
-					  row = (k - col);
+					  col = k % 3;
+					  row = (k - col) / 3;
 					  System.out.println("player o -> "+turn+" coordinates "+row+", "+col);
 					  
-					  if (col == 3) col = 2;
+					  winner = game.setCellValue(row, col, turn);
+					  imageUrl = "unown_o.png";
+					  nodeImage = (ImageView) gameGrid.getChildren().get(k);
+					  
+					  // updates the cell's image
+					  System.out.println("image not set yet ...");
+					  nodeImage.setImage(new Image(path+"unown_o.png"));
+					  System.out.println("image set");
+					  
+					  /*if (col == 3) col = 2;
 					  if (row == 3) row = 2;
 					
 					  winner = game.setCellValue(row, col, turn);
-					  nodeImage = (ImageView) gameGrid.getChildren().get(k);
+					  coups++;
+					  System.out.println("Coups: " + coups);
+					  nodeImage = (ImageView) gameGrid.getChildren().get(k);*/
 					  
 					  // updates the cell's image
 					  System.out.println("image not set yet ...");
@@ -132,6 +139,14 @@ public class ControllerGame implements Initializable {
 					  utils.switchView("../views/ViewGameWin.fxml");
 					  
 					  game.setGameOver(true);
+					  
+				  }
+				  
+				  // check draw
+				  if (winner.isEmpty() && coups == 9) {
+						
+					  utils.switchView("../views/ViewGameDraw.fxml");
+					  return;
 					  
 				  }
 				  

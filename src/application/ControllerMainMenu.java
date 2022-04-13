@@ -103,6 +103,8 @@ public class ControllerMainMenu extends Application implements Initializable {
 	 */
 	public void switchToGame(ActionEvent event) {
 		
+		ControllerGame.isAgainstAi = false;
+		
 		Utils utils = new Utils();
 		utils.switchView("../views/ViewGame.fxml");
 		
