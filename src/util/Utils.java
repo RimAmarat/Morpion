@@ -76,8 +76,8 @@ public class Utils {
 			System.out.println("path from utils -> "+path);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
 			Parent root = loader.load();
-			ControllerGame mycontroller = loader.getController();
-			mycontroller.setModel(mlp);
+			
+			ControllerGame.model = mlp;
 
 			Scene scene = new Scene(root);
 			
