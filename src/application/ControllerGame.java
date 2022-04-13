@@ -31,9 +31,11 @@ public class ControllerGame implements Initializable {
 	@FXML
 	private ImageView playerTurnIcon = new ImageView();
 	
+	public static boolean isAgainstAi = false;
+	
 	private Game game;
 	private int turn;
-	private MultiLayerPerceptron model;
+	public static MultiLayerPerceptron model = null;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -99,24 +101,28 @@ public class ControllerGame implements Initializable {
 				  
 				  winner = game.setCellValue(row, col, turn);
 				  
-				  // Calling the ai to play
-				  int k = aiPlay();
-				  System.out.println("k = "+k);
-				  turn = 1;
-				  col = k;
-				  row = (k - col);
-				  System.out.println("player o -> "+turn+" coordinates "+row+", "+col);
-				  
-				  if (col == 3) col = 2;
-				  if (row == 3) row = 2;
-				
-				  winner = game.setCellValue(row, col, turn);
-				  nodeImage = (ImageView) gameGrid.getChildren().get(k);
-				  
-				  // updates the cell's image
-				  System.out.println("image not set yet ...");
-				  nodeImage.setImage(new Image(path+"unown_o.png"));
-				  System.out.println("image set");
+				  if (ControllerGame.isAgainstAi) {
+					  
+					  // Calling the ai to play
+					  int k = aiPlay();
+					  System.out.println("k = "+k);
+					  turn = 1;
+					  col = k;
+					  row = (k - col);
+					  System.out.println("player o -> "+turn+" coordinates "+row+", "+col);
+					  
+					  if (col == 3) col = 2;
+					  if (row == 3) row = 2;
+					
+					  winner = game.setCellValue(row, col, turn);
+					  nodeImage = (ImageView) gameGrid.getChildren().get(k);
+					  
+					  // updates the cell's image
+					  System.out.println("image not set yet ...");
+					  nodeImage.setImage(new Image(path+"unown_o.png"));
+					  System.out.println("image set");
+					  
+				  }
 				  
 				  // check winner
 				  if (!winner.isEmpty()) {
@@ -166,7 +172,7 @@ public class ControllerGame implements Initializable {
 		}
 		Coup coup = new Coup(9, "game");
 		coup.in = input;
-		coup.out = model.forwardPropagation(coup.in);
+		coup.out = ControllerGame.model.forwardPropagation(coup.in);
 		
 		double[][] output = new double[3][3];
 		k = 0;
@@ -198,7 +204,5 @@ public class ControllerGame implements Initializable {
 		utils.switchView("../views/ViewMainMenu.fxml");
 		
 	}
-	
-	public void setModel(MultiLayerPerceptron model) { this.model = model; }
 
 }
