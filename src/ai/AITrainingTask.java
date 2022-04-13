@@ -68,7 +68,7 @@ public class AITrainingTask extends Task<Double> {
 		modelExists = lookForModel(modelFile);
 		
 		if(modelExists) {
-			net.load(filePath);
+			net = MultiLayerPerceptron.load(filePath);
 			System.out.println("No training because file already exists ");
 			return 0.0;
 		}
