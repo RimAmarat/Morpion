@@ -166,4 +166,28 @@ public class ControllerModelDisplay implements Initializable{
 		
 	}
 	
+	/**
+	 * Displays the help view in a new window
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void displayHelp(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.displayNewWindow("../views/ViewHelp.fxml", "Help");
+		
+	}
+	
+	/**
+	 * Displays the about view in a new window
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void displayAbout(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.displayNewWindow("../views/ViewAbout.fxml", "About");
+		
+	}
+	
 }

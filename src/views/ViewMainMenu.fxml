@@ -32,7 +32,7 @@
           </Menu>
           <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About">
             <items>
-              <MenuItem fx:id="whoAreWe" mnemonicParsing="false" text="Who are we ?" />
+              <MenuItem fx:id="whoAreWe" mnemonicParsing="false" onAction="#displayAbout" text="Who are we ?" />
             </items>
           </Menu>
         </menus>

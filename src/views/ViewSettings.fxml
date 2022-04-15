@@ -24,18 +24,18 @@
         <menus>
           <Menu fx:id="settingsMenu" mnemonicParsing="false" text="Settings">
             <items>
-              <MenuItem fx:id="paramConfig" disable="true" mnemonicParsing="false" onAction="#switchToSettings" text="Configure the Unowns" />
+              <MenuItem fx:id="paramConfig" mnemonicParsing="false" onAction="#switchToSettings" text="Configure the Unowns" />
                   <MenuItem fx:id="modelDisplay" mnemonicParsing="false" onAction="#switchToModelDisplay" text="View Models" />
             </items>
           </Menu>
           <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem fx:id="howToPlay" mnemonicParsing="false" text="How to play ?" />
+              <MenuItem fx:id="howToPlay" onAction="#displayHelp" mnemonicParsing="false" text="How to play ?" />
             </items>
           </Menu>
           <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About">
             <items>
-              <MenuItem fx:id="whoAreWe" mnemonicParsing="false" text="Who are we ?" />
+              <MenuItem fx:id="whoAreWe" mnemonicParsing="false" onAction="#displayAbout" text="Who are we ?" />
             </items>
           </Menu>
         </menus>
