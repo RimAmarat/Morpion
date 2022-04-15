@@ -96,7 +96,10 @@ public class Game {
 	public Optional<Integer> checkWin() {
 		
 		Optional<Integer> winner = Optional.empty();
-
+		
+		// counters to determine the winner
+		// if one the counter is equal to 3
+		// it means there is a winner
 		int countX = 0;
 		int countO = 0;
 		

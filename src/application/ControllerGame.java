@@ -69,7 +69,7 @@ public class ControllerGame implements Initializable {
 				  if (row == null)
 					  row = 0;
 				  
-				  // check if the case if available
+				  // check if the case is available
 				  if (!game.caseAvailable(row, col)) return;
 				  
 				  String path = "./assets/";
@@ -96,6 +96,7 @@ public class ControllerGame implements Initializable {
 				  transition.setToValue(1.0);
 				  transition.play();
 				  
+				  // updates the grid
 				  winner = game.setCellValue(row, col, turn);
 				  coups++;
 				  
