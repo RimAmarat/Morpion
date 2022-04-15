@@ -35,7 +35,7 @@ public class ControllerSettings implements Initializable {
 	Button apply ;
 	
 	@FXML
-	ComboBox difficultyChoice ;
+	ComboBox<String> difficultyChoice ;
 	
 	String[] choices = {"Easy", "Medium", "Hard"};
 	
@@ -53,26 +53,37 @@ public class ControllerSettings implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		
+		// Initializing the choiceBox items
 		difficultyChoice.getItems().addAll(choices);
+		
+		// Easy is the default difficulty
 		difficultyChoice.setValue(choices[0]);
+		
+		// Sets the fields with the difault parameters of the chosen difficulty
 		difficultyChoice.setOnAction(event -> {
 		setPLaceHolders(difficultyChoice.getValue().toString());
 			});
+		
 		// Calling it for the default choice
 		setPLaceHolders(difficultyChoice.getValue().toString());
 	}
 	
+	/**
+	 * Sets the fields according to the default parameters of the difficulty level
+	 * 
+	 * @param String - Chosen difficulty level
+	 */	
 	public void setPLaceHolders(String difficulty) {
 		try {
-			String config = getConfigContent(difficulty)[0];
-			String[] configArray = config.split(":");
+			// old configuration
+			String oldConfig = getConfigContent(difficulty)[0];
+			String[] configArray = oldConfig.split(":");
 			hiddenLayerSize.setPromptText(configArray[1]);
 			learningRate.setPromptText(configArray[2]);
 			numberHiddenLayers.setPromptText(configArray[3]);
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -96,22 +107,12 @@ public class ControllerSettings implements Initializable {
 		// Fields
 		TextField[] fields = {hiddenLayerSize, learningRate, numberHiddenLayers};
 		
-		for(TextField field : fields) {
-			if(field.getText() == "") {
-				errorMessage.setVisible(true);
-				field.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
-			}
-		}
-		System.out.println("Field verification done");
-		
 		// Difficulty choice
-		if(difficultyChoice.getValue() != null) {
 			String selectedDifficulty = (String) difficultyChoice.getValue() ;					
 			  modifyConfig(selectedDifficulty, fields);
 
 			System.out.println("Difficulty choice done");
-		}
-		else difficultyChoice.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
+		
 
 	}
 	
@@ -160,28 +161,33 @@ public class ControllerSettings implements Initializable {
 		
 	public void modifyConfig(String selectedDifficulty, TextField[] textFields) {
 		
-		System.out.println("modifyConfig called");
 	      //Instantiating the File class
 	      String filePath = "./resources/config.txt";
 
-	      System.out.println("Splitting file content");
 	      String fileContents = "";
 		try {
 			fileContents = getConfigContent(selectedDifficulty)[2];
-			System.out.println("old data: \n"+fileContents);
 			String oldConfig = getConfigContent(selectedDifficulty)[0];
 			String newConfig = getConfigContent(selectedDifficulty)[1];
 			  
-			for(TextField field: textFields)
-				newConfig += ":"+field.getText();
+			// Default config is put in an array M:512:0.06:2 -> {"M", "512", "0.06", "2"}
+			String[] oldConfigArray = oldConfig.split(":");
+			
+			// If the field is not filled, default paramter is kept
+			int i = 1 ;
+			for(TextField field: textFields) {
+				if(field.getText() != "") {
+					newConfig += ":"+field.getText();
+					i++ ;
+				}
+				else newConfig +=":"+oldConfigArray[i];
+			}
 		      
 		    fileContents = fileContents.replaceAll(oldConfig, newConfig);
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-	      // Default m config M:512:0.06:2
 	      
 	      FileWriter writer;
 		try {
@@ -189,10 +195,9 @@ public class ControllerSettings implements Initializable {
 			writer.append(fileContents);
 			writer.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	     System.out.println("new data: \n"+fileContents);
+	     System.out.println("new Config: \n"+fileContents);
 
 	}
 	

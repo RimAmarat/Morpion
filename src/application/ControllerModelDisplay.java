@@ -43,22 +43,18 @@ public class ControllerModelDisplay implements Initializable{
 		System.out.println("Initialize called");
 	    ArrayList<String> fileNames;
 		try {
-			fileNames = getFileList("./resources/train");
+			fileNames = getModelFileList("./resources/train");
 			
 		    for(String n: fileNames) {
-		    	// Removing the path and extension
-				//n = n.replaceAll("(.)*/|(.srl)", "");
-
-			    System.out.println("HBox");
-			    // Create a Horizontal Box to display teh item
+			    // Create a Horizontal Box to display the item
 			    HBox listItem = new HBox();
-		    	System.out.println("loop here");
 		    	
-		    	// Label : model file name
+		    	// Label : Model file name
 		    	Label l = new Label(n);
 		    	
-		    	// Button 
+		    	// Delete Button 
 		    	Button deleteButton = new Button("Delete"); 
+		    	
 		    	// Setting the button's action to delete the corresponding file
 		    	deleteButton.setOnAction(e ->{
 		    		System.out.println("This file has to be deleted "+n);
@@ -66,14 +62,19 @@ public class ControllerModelDisplay implements Initializable{
 					if(deleteModelFile(n)) {
 		    			
 		    			// Get file index from filename list and delete the correponding HBox 
-		    			listOfModels.getItems().remove(fileNames.indexOf(n));
+						try {
+			    			listOfModels.getItems().remove(getModelFileList("./resources/train").indexOf(n));
+			    			System.out.println("Successfuly deleted model file" + n);
 
-		    			System.out.println("Successfuly deleted file");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
 					}
-
 		    		else 
 		    			System.out.println("File not deleted");
+					
 		    	});
+		    	
 		    	// Spacer allows us to keep the button and Text seperated
 		        final Pane spacer = new Pane();
 		        HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -83,20 +84,20 @@ public class ControllerModelDisplay implements Initializable{
 		        listItem.getChildren().addAll(l, spacer, deleteButton);
 		        
 		        // Adding the horizontal box to the list view
-		    	System.out.println("here");
 		    	listOfModels.getItems().add(listItem);
-		    	System.out.println("End of loop");
 		    }
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    //listOfModels.getItems().addAll(names);
 
-		
 	}
 	
-	public ArrayList<String> getFileList(String path) throws IOException {
+	/**
+	 * gets all .srl files in the path folder
+	 * 
+	 * @param String - path to the folder containing the model files
+	 */
+	public ArrayList<String> getModelFileList(String path) throws IOException {
 	    
 		ArrayList<String> fileNames = new ArrayList<String>(); 
     	List<Path> filesInFolder = Files.walk(Paths.get(path))
@@ -105,11 +106,8 @@ public class ControllerModelDisplay implements Initializable{
 		
 		for(Path p : filesInFolder) {
 			if(p.toString().contains(".srl")) {
-				System.out.println("srl -> "+ p.toString());
 				fileNames.add(p.toString());
 			}
-			else 
-				System.out.println("not srl -> "+ p.toString());
 		}
 			
 		return fileNames ;
@@ -119,15 +117,15 @@ public class ControllerModelDisplay implements Initializable{
 		boolean fileDeleted = false;
 		try  
 		{         
-			File f= new File(filePath);           //file to be deleted  
-			if(f.delete())                      //returns Boolean value  
+			File f= new File(filePath);           // file to be deleted  
+			if(f.delete())                    
 			{  
-				System.out.println(f.getName() + " deleted");   //getting and printing the file name  
+				System.out.println(f.getName() + " deleted");   // getting and printing the file name  
 				fileDeleted = true;
 			}  
 			else  
 			{  
-				System.out.println("failed");  
+				System.out.println("delete failed");  
 			}  
 		}  
 		catch(Exception e)  
