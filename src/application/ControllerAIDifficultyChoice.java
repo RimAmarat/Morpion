@@ -61,5 +61,29 @@ public class ControllerAIDifficultyChoice {
 		utils.switchView("../views/ViewLoading.fxml");
 		
 	}
+	
+	/**
+	 * Loads the settings view
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void switchToSettings(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewSettings.fxml");
+		
+	}
+	
+	/**
+	 * Loads the model display view
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void switchToModelDisplay(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewModelDisplay.fxml");
+		
+	}
 
 }

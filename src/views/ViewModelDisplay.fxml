@@ -21,8 +21,8 @@
         <menus>
           <Menu fx:id="settingsMenu" mnemonicParsing="false" text="Settings">
             <items>
-              <MenuItem fx:id="paramConfig" mnemonicParsing="false" text="Configure the Unowns" />
-                  <MenuItem fx:id="modelDisplay" mnemonicParsing="false" text="View Models" />
+              <MenuItem fx:id="paramConfig" mnemonicParsing="false" onAction="#switchToSettings" text="Configure the Unowns" />
+                  <MenuItem fx:id="modelDisplay" disable="true" mnemonicParsing="false" onAction="#switchToModelDisplay" text="View Models" />
             </items>
           </Menu>
           <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">

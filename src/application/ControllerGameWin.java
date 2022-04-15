@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.animation.ScaleTransition; 
 import javafx.util.Duration;
 import javafx.animation.Timeline;
-
+import javafx.event.ActionEvent;
 import util.Utils;
 
 public class ControllerGameWin {
@@ -51,6 +51,30 @@ public class ControllerGameWin {
 		
 		Utils utils = new Utils();
 		utils.switchView("../views/ViewGame.fxml");
+		
+	}
+	
+	/**
+	 * Loads the settings view
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void switchToSettings(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewSettings.fxml");
+		
+	}
+	
+	/**
+	 * Loads the model display view
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void switchToModelDisplay(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewModelDisplay.fxml");
 		
 	}
 
