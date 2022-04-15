@@ -126,6 +126,7 @@ public class Utils {
 		}
 		
 		newStage.setTitle(title);
+		newStage.setX(0.0);
 		
 		newStage.show();
 		
