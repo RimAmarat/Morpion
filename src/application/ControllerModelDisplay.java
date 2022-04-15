@@ -21,6 +21,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.event.ActionEvent;
+
+import util.Utils;
+
 
 public class ControllerModelDisplay implements Initializable{
 
@@ -133,5 +137,11 @@ public class ControllerModelDisplay implements Initializable{
 		return fileDeleted ;
 	}
 	
+	public void switchMainMenu(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewMainMenu.fxml");
+		
+	}
 	
 }
