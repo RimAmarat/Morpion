@@ -116,7 +116,7 @@ public class ControllerSettings implements Initializable {
 
 	}
 	
-	public String[] getConfigContent(String selectedDifficulty) throws FileNotFoundException {
+	public static String[] getConfigContent(String selectedDifficulty) throws FileNotFoundException {
 	      String filePath = "./resources/config.txt";
 	      //Instantiating the Scanner class to read the file
 	      Scanner sc;
@@ -173,7 +173,7 @@ public class ControllerSettings implements Initializable {
 			// Default config is put in an array M:512:0.06:2 -> {"M", "512", "0.06", "2"}
 			String[] oldConfigArray = oldConfig.split(":");
 			
-			// If the field is not filled, default paramter is kept
+			// If the field is not filled, default parameter is kept
 			int i = 1 ;
 			for(TextField field: textFields) {
 				if(field.getText() != "") {

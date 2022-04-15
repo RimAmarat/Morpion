@@ -62,17 +62,6 @@ public class AITrainingTask extends Task<Double> {
 	@Override
 	protected Double call() throws Exception {
 		
-		String modelFile = "mlp_"+numberOfHiddenLayers+"_"+lr+"_"+hiddenLayerSize+".srl" ;
-		String filePath = "./resources/train/"+modelFile ;
-		
-		modelExists = lookForModel(modelFile);
-		
-		if(modelExists) {
-			net = MultiLayerPerceptron.load(filePath);
-			System.out.println("No training because file already exists ");
-			return 0.0;
-		}
-
 		// Initialisation de coups
 		HashMap<Integer, Coup> coups = Test.loadGames("./resources/dataset/Tic_tac_initial_results.csv");
 		Test.saveGames(coups, "./resources/train_dev_test/", 0.7);
@@ -128,7 +117,6 @@ public class AITrainingTask extends Task<Double> {
 		
 		// Save the model
 		net.save("./resources/train/", lr, hiddenLayerSize, numberOfHiddenLayers);
-		
 
         return error;
 	}

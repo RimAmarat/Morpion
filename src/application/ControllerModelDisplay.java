@@ -61,14 +61,9 @@ public class ControllerModelDisplay implements Initializable{
 		    		Object HBox;
 					if(deleteModelFile(n)) {
 		    			
-		    			// Get file index from filename list and delete the correponding HBox 
-						try {
-			    			listOfModels.getItems().remove(getModelFileList("./resources/train").indexOf(n));
-			    			System.out.println("Successfuly deleted model file" + n);
-
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+		    			HBox boxToDelete = (HBox) deleteButton.getParent() ;
+						listOfModels.getItems().remove(boxToDelete);
+						System.out.println("Successfuly deleted model file" + n);
 					}
 		    		else 
 		    			System.out.println("File not deleted");
@@ -117,7 +112,7 @@ public class ControllerModelDisplay implements Initializable{
 		boolean fileDeleted = false;
 		try  
 		{         
-			File f= new File(filePath);           // file to be deleted  
+			File f= new File(filePath);           //file to be deleted  
 			if(f.delete())                    
 			{  
 				System.out.println(f.getName() + " deleted");   // getting and printing the file name  
