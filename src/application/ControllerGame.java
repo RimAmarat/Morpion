@@ -60,6 +60,9 @@ public class ControllerGame implements Initializable {
 				  Integer col = gameGrid.getColumnIndex(node);
 				  Integer row = gameGrid.getRowIndex(node);
 				  
+				  // k is the index in both the grid and ai output
+				  int k = 0;
+				  
 				  if (col == null)
 					  col = 0;
 				  
@@ -95,40 +98,25 @@ public class ControllerGame implements Initializable {
 				  
 				  winner = game.setCellValue(row, col, turn);
 				  coups++;
-				  System.out.println("Coups: " + coups);
 				  
 				  if (ControllerGame.isAgainstAi) {
 					  
-					  // Calling the ai to play
-					  int k = aiPlay();
-					  System.out.println("k = "+k);
+					  // Calls the ai to play
+					  // The indexes the grid go from 0 to 9
+					  // k is the index in both the grid and ai output
+					  k = aiPlay();
 					  turn = 1;
 					  col = k % 3;
 					  row = (k - col) / 3;
 					  System.out.println("player o -> "+turn+" coordinates "+row+", "+col);
 					  
+					  // fills the cell in the game
 					  winner = game.setCellValue(row, col, turn);
 					  imageUrl = "unown_o.png";
+					  
+					  // updates the cell's image
 					  nodeImage = (ImageView) gameGrid.getChildren().get(k);
-					  
-					  // updates the cell's image
-					  System.out.println("image not set yet ...");
 					  nodeImage.setImage(new Image(path+"unown_o.png"));
-					  System.out.println("image set");
-					  
-					  /*if (col == 3) col = 2;
-					  if (row == 3) row = 2;
-					
-					  winner = game.setCellValue(row, col, turn);
-					  coups++;
-					  System.out.println("Coups: " + coups);
-					  nodeImage = (ImageView) gameGrid.getChildren().get(k);*/
-					  
-					  // updates the cell's image
-					  System.out.println("image not set yet ...");
-					  nodeImage.setImage(new Image(path+"unown_o.png"));
-					  System.out.println("image set");
-					  
 				  }
 				  
 				  // check winner
@@ -174,9 +162,14 @@ public class ControllerGame implements Initializable {
 		
 	}
 	
+	/**
+	 * Computes and return the AI's next move
+	 * 
+	 */	
 	public int aiPlay() {
 		double[] input = new double[9];
 		int k = 0;
+		// Gets the game grid and converts it to a 1 array
 		int[][] gridTable = game.getGrid();
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
@@ -185,21 +178,26 @@ public class ControllerGame implements Initializable {
 				k++;
 			}
 		}
+		
+		// Computes move probabilities
 		Coup coup = new Coup(9, "game");
 		coup.in = input;
+		// Output of forwardprop : an array of scores given to each case
 		coup.out = ControllerGame.model.forwardPropagation(coup.in);
 		
 		double[][] output = new double[3][3];
 		k = 0;
 		int prochain_coup = 0;
 		
-		while(input[k] != 0.0 && k < 9)
+		// Gets to the first available case (that it can play) 
+		while(input[k] != 0.0 && k < 8)
 			k++;
 		
+		// Goes through all possible cases and gets the one with the highest output score
 		prochain_coup = k;
-		k++;
-		while(coup.out[k] > coup.out[prochain_coup] && k < 8) {
-			if(input[k] == 0.0) {
+		if(k < 9) k++;
+		while(k < 9) {
+			if(coup.out[k] > coup.out[prochain_coup] && input[k] == 0.0) {
 				prochain_coup = k;
 			}
 			k++;

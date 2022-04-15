@@ -30,7 +30,7 @@ public class ControllerLoading implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		// init the progress bar
-		progressBar.setProgress(0.0);
+		//progressBar.setProgress(0.0);
 		
 		// setup training
 		AITrainingTask trainingTask = new AITrainingTask(ControllerLoading.difficulty);

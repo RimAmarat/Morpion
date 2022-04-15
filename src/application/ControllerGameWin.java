@@ -16,10 +16,10 @@ public class ControllerGameWin {
 	
 	public void initialize() {
 		
-		String path = "";
+		String path = "./assets/";
 		String imagePath = path + "unown_x.png";
 		
-		System.out.println(ControllerGameWin.winner);
+		System.out.println("winner is : "+ControllerGameWin.winner);
 		
 		if (winner != -1)
 			imagePath = path + "unown_o.png";
@@ -27,6 +27,7 @@ public class ControllerGameWin {
 		Image playerIconImage = new Image(imagePath);
 		playerIcon.setImage(playerIconImage);
 		
+		// Animation with the X and O icons
 		ScaleTransition translate = new ScaleTransition();
 		translate.setByX(0.1);
 		translate.setByY(0.1);

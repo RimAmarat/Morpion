@@ -49,9 +49,14 @@ public class Utils {
 		try {
 		
 			Path path = (Path) FileSystems.getDefault().getPath(".").toAbsolutePath();
+			System.out.println(path.toString());
 			System.out.println("path from utils -> "+path);
+
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
-			Parent root = loader.load();
+			if(loader == null) System.out.println("loader is null");
+			else System.out.println("");
+			
+			Parent root = FXMLLoader.load(getClass().getResource(view));
 			
 			Scene scene = new Scene(root);
 			
@@ -63,6 +68,10 @@ public class Utils {
 		} catch (IOException exception) {
 			
 			System.out.println(exception.getMessage());
+			for(StackTraceElement line : exception.getStackTrace()) {
+				System.out.println(line.toString());
+			}
+
 			
 		}
 		
@@ -73,7 +82,6 @@ public class Utils {
 		try {
 			
 			Path path = (Path) FileSystems.getDefault().getPath(".").toAbsolutePath();
-			System.out.println("path from utils -> "+path);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
 			Parent root = loader.load();
 			

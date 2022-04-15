@@ -129,7 +129,6 @@ public class ControllerMainMenu extends Application implements Initializable {
 	 */
 	public void switchToModelDisplay(ActionEvent event) {
 		
-		System.out.println("Switch to model display");
 		Utils utils = new Utils();
 		utils.switchView("../views/ViewModelDisplay.fxml");
 		
