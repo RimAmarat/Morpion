@@ -138,6 +138,6 @@
          <image>
             <Image url="@../../resources/images/unown_x.png" />
          </image></ImageView>
-      <Button layoutX="16.0" layoutY="389.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
+      <Button layoutX="16.0" layoutY="389.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Main menu" />
    </children>
 </AnchorPane>
