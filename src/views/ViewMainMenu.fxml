@@ -27,7 +27,7 @@
           </Menu>
           <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem fx:id="howToPlay" onAction="#displayHelp" mnemonicParsing="false" text="How to play ?" />
+              <MenuItem fx:id="howToPlay" mnemonicParsing="false" onAction="#displayHelp" text="How to play ?" />
             </items>
           </Menu>
           <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About">
@@ -37,17 +37,17 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Text layoutX="127.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your opponent">
+      <Text layoutX="80.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your opponent">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="Noto Sans CJK KR Bold" size="26.0" />
          </font></Text>
-      <Button layoutX="191.0" layoutY="259.0" mnemonicParsing="false" onAction="#switchToGame" text="Player">
+      <Button layoutX="47.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="51.0" prefWidth="145.0" style="-fx-background-color: #5c4bda;" text="Player" textFill="WHITE">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="21.0" />
          </font></Button>
-      <Button layoutX="178.0" layoutY="316.0" mnemonicParsing="false" onAction="#switchToAIDifficultyChoice" text="Computer">
+      <Button layoutX="260.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchToAIDifficultyChoice" prefHeight="51.0" prefWidth="145.0" style="-fx-background-color: #5c4bda;" text="Computer" textFill="WHITE">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="21.0" />
          </font></Button>
    </children>
 </AnchorPane>

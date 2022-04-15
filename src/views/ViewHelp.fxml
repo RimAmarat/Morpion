@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="475.0" maxWidth="449.0" minHeight="400.0" minWidth="449.0" prefHeight="428.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerHelp">
+<AnchorPane maxHeight="475.0" maxWidth="449.0" minHeight="400.0" minWidth="449.0" prefHeight="428.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerHelp">
    <children>
       <ImageView fitHeight="400.0" fitWidth="450.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -27,7 +27,7 @@
           </Menu>
           <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem fx:id="howToPlay" onAction="#displayHelp" mnemonicParsing="false" text="How to play ?" />
+              <MenuItem fx:id="howToPlay" mnemonicParsing="false" onAction="#displayHelp" text="How to play ?" />
             </items>
           </Menu>
           <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About">
@@ -37,13 +37,13 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="buttonClose" layoutX="193.0" layoutY="352.0" mnemonicParsing="false" onAction="#close" text="Close">
+      <Button fx:id="buttonClose" layoutX="179.0" layoutY="359.0" mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #5c4bda;" text="Close" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Label layoutX="111.0" layoutY="50.0" prefHeight="158.0" prefWidth="267.0" text="There is many ways to win a game. Basically, you need to align at least 3 crosses or circles on the same row or colum. You can even align 3 crosses or circles on a diagonal" textAlignment="JUSTIFY" wrapText="true">
+      <Label layoutX="111.0" layoutY="50.0" prefHeight="158.0" prefWidth="285.0" text="There are many ways to win a game. Basically, you need to align at least 3 crosses or circles on the same row or colum. You can even align 3 crosses or circles on a diagonal. Have fun !" textAlignment="JUSTIFY" wrapText="true">
          <font>
-            <Font size="16.0" />
+            <Font name="System Italic" size="16.0" />
          </font>
       </Label>
       <ImageView fitHeight="125.0" fitWidth="121.0" layoutX="16.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">

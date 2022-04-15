@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="475.0" maxWidth="449.0" minHeight="400.0" minWidth="449.0" prefHeight="428.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerGameWin">
+<AnchorPane maxHeight="475.0" maxWidth="449.0" minHeight="400.0" minWidth="449.0" prefHeight="428.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerGameWin">
    <children>
       <ImageView fitHeight="400.0" fitWidth="450.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -27,7 +27,7 @@
           </Menu>
           <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem fx:id="howToPlay" onAction="#displayHelp" mnemonicParsing="false" text="How to play ?" />
+              <MenuItem fx:id="howToPlay" mnemonicParsing="false" onAction="#displayHelp" text="How to play ?" />
             </items>
           </Menu>
           <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About">
@@ -52,14 +52,14 @@
             <Font name="System Bold" size="45.0" />
          </font>
       </Label>
-      <Button layoutX="58.0" layoutY="303.0" mnemonicParsing="false" onAction="#switchMainMenu" text="Main menu">
+      <Button layoutX="44.0" layoutY="304.0" mnemonicParsing="false" onAction="#switchMainMenu" prefHeight="45.0" prefWidth="137.0" style="-fx-background-color: #5c4bda;" text="Main menu" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="304.0" layoutY="303.0" mnemonicParsing="false" onAction="#replay" text="Replay">
+      <Button layoutX="284.0" layoutY="304.0" mnemonicParsing="false" onAction="#replay" prefHeight="45.0" prefWidth="105.0" style="-fx-background-color: #5c4bda;" text="Replay" textFill="WHITE">
          <font>
-            <Font size="16.0" />
+            <Font size="21.0" />
          </font>
       </Button>
    </children>
