@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="475.0" maxWidth="449.0" minHeight="400.0" minWidth="449.0" prefHeight="428.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerGame">
+<AnchorPane maxHeight="475.0" maxWidth="449.0" minHeight="400.0" minWidth="449.0" prefHeight="428.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerGame">
    <children>
       <ImageView fitHeight="400.0" fitWidth="450.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,19 +25,20 @@
       </ImageView>
       <MenuBar layoutY="-1.0" prefHeight="30.0" prefWidth="449.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Settings">
+          <Menu fx:id="settingsMenu" disable="true" mnemonicParsing="false" text="Settings">
             <items>
-              <MenuItem mnemonicParsing="false" text="Configure the Unowns" />
+              <MenuItem fx:id="paramConfig" mnemonicParsing="false" onAction="#switchToSettings" text="Configure the Unowns" />
+                  <MenuItem fx:id="modelDisplay" mnemonicParsing="false" onAction="#switchToModelDisplay" text="View Models" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="How to play ?" />
+              <MenuItem fx:id="howToPlay" mnemonicParsing="false" onAction="#displayHelp" text="How to play ?" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="About">
+          <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About">
             <items>
-              <MenuItem mnemonicParsing="false" text="Who are we ?" />
+              <MenuItem fx:id="whoAreWe" mnemonicParsing="false" onAction="#displayAbout" text="Who are we ?" />
             </items>
           </Menu>
         </menus>

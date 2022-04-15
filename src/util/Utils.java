@@ -8,17 +8,13 @@ import ai.MultiLayerPerceptron;
 import application.ControllerGame;
 
 // lib
-import javafx.application.Application;
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.Node;
+import javafx.stage.Stage;
 
 import javafx.stage.Stage;
 
 import javafx.fxml.FXMLLoader;
-
-import javafx.event.ActionEvent;
 
 
 public class Utils {
@@ -102,6 +98,37 @@ public class Utils {
 		if(mlp == null) System.out.println("mlp is null");
 		else System.out.println("mlp is not null");
 		System.out.println("switchView(String view, MultiLayerPerceptron mlp) called ");
+		
+	}
+	
+	/**
+	 * Display a view in another window
+	 * 
+	 * @param view - path to the view to display on the new window
+	 * @param title - the new window title
+	 */
+	public void displayNewWindow(String view, String title) {
+		
+		Stage newStage = new Stage();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+		
+		try {
+		
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			
+			newStage.setScene(scene);
+			
+		} catch (Exception exception) {
+			
+			exception.printStackTrace();			
+			
+		}
+		
+		newStage.setTitle(title);
+		newStage.setX(0.0);
+		
+		newStage.show();
 		
 	}
 

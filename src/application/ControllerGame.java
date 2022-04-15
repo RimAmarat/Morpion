@@ -112,6 +112,7 @@ public class ControllerGame implements Initializable {
 					  
 					  // fills the cell in the game
 					  winner = game.setCellValue(row, col, turn);
+					  coups++;
 					  imageUrl = "unown_o.png";
 					  
 					  // updates the cell's image
@@ -130,8 +131,10 @@ public class ControllerGame implements Initializable {
 					  
 				  }
 				  
+				  System.out.println("Coups: " + coups);
+				  
 				  // check draw
-				  if (winner.isEmpty() && coups == 9) {
+				  if (winner.isEmpty() && coups >= 9) {
 						
 					  utils.switchView("../views/ViewGameDraw.fxml");
 					  return;
@@ -215,6 +218,54 @@ public class ControllerGame implements Initializable {
 		
 		Utils utils = new Utils();
 		utils.switchView("../views/ViewMainMenu.fxml");
+		
+	}
+	
+	/**
+	 * Loads the settings view
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void switchToSettings(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewSettings.fxml");
+		
+	}
+	
+	/**
+	 * Loads the model display view
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void switchToModelDisplay(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.switchView("../views/ViewModelDisplay.fxml");
+		
+	}
+	
+	/**
+	 * Displays the help view in a new window
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void displayHelp(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.displayNewWindow("../views/ViewHelp.fxml", "Help");
+		
+	}
+	
+	/**
+	 * Displays the about view in a new window
+	 * 
+	 * @param event - the triggered event
+	 */
+	public void displayAbout(ActionEvent event) {
+		
+		Utils utils = new Utils();
+		utils.displayNewWindow("../views/ViewAbout.fxml", "About");
 		
 	}
 
