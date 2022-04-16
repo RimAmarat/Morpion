@@ -68,6 +68,7 @@ public class ControllerAIDifficultyChoice {
 				
 		if(modelExists) {
 			ControllerGame.model = MultiLayerPerceptron.load(filePath);
+			ControllerGame.isAgainstAi = true ;
 			System.out.println("No training because file already exists ");
 		}
 		return modelExists;

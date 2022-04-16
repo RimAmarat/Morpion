@@ -35,7 +35,7 @@ public class ControllerGame implements Initializable {
 	
 	private Game game;
 	private int turn;
-	public static MultiLayerPerceptron model = null;
+	public static MultiLayerPerceptron model ;
 	private int coups;
 	
 	@Override
@@ -109,6 +109,7 @@ public class ControllerGame implements Initializable {
 					  turn = 1;
 					  col = k % 3;
 					  row = (k - col) / 3;
+					  if(k==0 || k==1 || k == 2) row = 0;
 					  System.out.println("player o -> "+turn+" coordinates "+row+", "+col);
 					  
 					  // fills the cell in the game
@@ -171,6 +172,7 @@ public class ControllerGame implements Initializable {
 	 * 
 	 */	
 	public int aiPlay() {
+		if(model==null) System.out.println("Model is null");
 		double[] input = new double[9];
 		int k = 0;
 		// Gets the game grid and converts it to a 1 array
@@ -199,7 +201,7 @@ public class ControllerGame implements Initializable {
 		
 		// Goes through all possible cases and gets the one with the highest output score
 		prochain_coup = k;
-		if(k < 9) k++;
+		if(k < 8) k++;
 		while(k < 9) {
 			if(coup.out[k] > coup.out[prochain_coup] && input[k] == 0.0) {
 				prochain_coup = k;
