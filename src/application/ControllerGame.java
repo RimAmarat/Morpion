@@ -35,7 +35,7 @@ public class ControllerGame implements Initializable {
 	
 	private Game game;
 	private int turn;
-	public static MultiLayerPerceptron model ;
+	public static MultiLayerPerceptron model = null ;
 	private int coups;
 	
 	@Override
